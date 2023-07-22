@@ -40,7 +40,6 @@
     html {
         box-sizing: border-box;
         height: 100%;
-        font-size: 10px;
     }
 
     *,
@@ -50,7 +49,7 @@
     }
 
 
-    form {
+    form.form-search-admin {
         position: relative;
         width: 30rem;
         background: var(--color-brand);
@@ -58,7 +57,7 @@
         overflow: hidden;
     }
 
-    input,
+    input.input-search,
     .button-search {
         /* height: 30px; */
         font-family: var(--font-fam);
@@ -67,7 +66,7 @@
         font-size: 1.4rem;
     }
 
-    input[type="search"] {
+    input.input-search[type="search"] {
         outline: 0;
         width: 100%;
         border: 1px solid #ffffff33;
@@ -79,7 +78,7 @@
         transition-property: width, border-radius;
         z-index: 1;
         position: relative;
-        background-color: #111827;
+        background-color: #fff;
     }
 
     .button-search {
@@ -106,7 +105,7 @@
         background-color: #005683;
     }
 
-    input:not(:placeholder-shown) {
+    input.input-search:not(:placeholder-shown) {
         border-radius: var(--rad) 0 0 var(--rad);
         width: calc(100% - var(--btn-width));
 
@@ -115,7 +114,7 @@
         }
     }
 
-    label {
+    label.label-search {
         position: absolute;
         clip: rect(1px, 1px, 1px, 1px);
         padding: 0;
@@ -130,11 +129,11 @@
     <div id="admin_wrapper">
         <header>
             <button class=""><i class="bi bi-list"></i></button>
-            <img src="../images/admin-home-page/logo2.png" alt="">
+            <img src="../images/logo (1).png" alt="">
             <div class="item-top-right">
-                <a href="#"><i class="bi bi-envelope-fill"></i></i></a>
-                <a href="#"><i class="bi bi-chat-dots-fill"></i></i></a>
-                <a href="#"><i class="bi bi-bell-fill"></i></a>
+                <a href="#"><i class="bi bi-envelope"></i></a>
+                <a href="#"><i class="bi bi-chat-dots"></i></a>
+                <a href="#"><i class="bi bi-bell"></i></a>
                 <div class="dropdown">
 
                 </div>
@@ -145,11 +144,11 @@
                 <div class="menu_left">
                     <ul>
                         <li><a href="#"><i class="bi bi-speedometer2"></i>Dashboard</a></li>
-                        <li><a href="#"><i class="bi bi-bookmarks-fill"></i>Popular Categories</a></li>
-                        <li><a href="#"><i class="bi bi-briefcase-fill"></i>Recent Jobs</a></li>
+                        <li><a href="#"><i class="bi bi-bookmarks"></i>Popular Categories</a></li>
+                        <li><a href="#"><i class="bi bi-briefcase"></i>Recent Jobs</a></li>
                         <li><a href="#"><i class="bi bi-building"></i>Company</a></li>
-                        <li><a href="#"><i class="bi bi-person-fill"></i></i>User</a></li>
-                        <li><a href="#"><i class="bi bi-pen-fill"></i>Blog</a></li>
+                        <li><a href="#"><i class="bi bi-person-circle"></i>User</a></li>
+                        <li><a href="#"><i class="bi bi-pen"></i>Blog</a></li>
                     </ul>
                 </div>
             </aside>
@@ -159,9 +158,9 @@
                         <h3>Company</h3>
                     </div>
                     <div class="section-item-right">
-                        <form onsubmit="event.preventDefault();" role="search">
-                            <label for="search">Search for stuff</label>
-                            <input id="search" type="search" placeholder="Search..." autofocus required />
+                        <form onsubmit="event.preventDefault();" role="search" class="form-search-admin">
+                            <label for="search" class="label-search">Search for stuff</label>
+                            <input id="search" type="search" class="input-search" placeholder="Search..." autofocus required />
                             <button class="button-search" type="submit">Go</button>
                         </form>
                         <button class="btn-add">ADD NEW</button>
@@ -169,22 +168,61 @@
                 </section>
                 <div class="table-main">
                     <table class="table table-hover">
-                        <tr>
-                            <th>Company</th>
-                            <th>Contact</th>
-                            <th>Country</th>
-                        </tr>
-                        <tr>
-                            <td>Alfreds Futterkiste</td>
-                            <td>Maria Anders</td>
-                            <td>Germany</td>
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-                            <td>Francisco Chang</td>
-                            <td>Mexico</td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th>Contact</th>
+                                <th>Country</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Alfreds Futterkiste</td>    
+                                <td>Maria Anders</td>
+                                <td>Germany</td>
+                                <td>
+                                    <a href="#"><i class="edit bi bi-pencil-square"></i></a>
+                                    <a href="#"><i class="delete bi bi-x-circle"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Centro comercial Moctezuma</td>
+                                <td>Francisco Chang</td>
+                                <td>Mexico</td>
+                                <td>
+                                    <a href="#"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="#"><i class="bi bi-x-circle"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Centro comercial Moctezuma</td>
+                                <td>Francisco Chang</td>
+                                <td>Mexico</td>
+                                <td>
+                                    <a href="#"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="#"><i class="bi bi-x-circle"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
+
+                </div>
+                <div class="card-bottom">
+                        <a href="#">First</a>
+                        <a href="#">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">Last</a>
+                        <div>
+                            <p>Show</p>
+                            <select name="#" id="#">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                            </select>
+                            <p>item</p>
+                        </div>
                 </div>
             </div>
         </main>

@@ -1,18 +1,25 @@
 #admin_wrapper {
   width: 100%;
   height: auto;
-  background-color: #111827;
+  background-color: #f3f4f6;
+}
+#admin_wrapper label {
+  margin-bottom: 0.5rem;
+}
+#admin_wrapper textarea {
+  height: 150px;
 }
 #admin_wrapper header {
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.16);
   display: flex;
-  background-color: #1f2937;
+  background-color: #fff;
   position: fixed;
   inset: 0 0 auto;
   z-index: 999;
 }
 #admin_wrapper header button {
-  background-color: #1f2937;
+  background-color: #fff;
+  color: #000;
 }
 #admin_wrapper header .bi-list::before {
   font-size: 2rem;
@@ -27,7 +34,7 @@
   top: 20px;
 }
 #admin_wrapper header .item-top-right a {
-  color: rgba(255, 255, 255, 0.5019607843);
+  color: #6b727a;
   margin-right: 1.5rem;
   margin-top: 0.5rem;
   font-size: 1.5rem;
@@ -36,7 +43,7 @@
   margin-left: 1rem;
   width: 38px;
   height: 38px;
-  background-color: rgba(255, 255, 255, 0.5019607843);
+  background-color: #6b727a;
   border-radius: 20px;
 }
 #admin_wrapper main {
@@ -49,21 +56,30 @@
   position: fixed;
   top: 0;
   transform: translateY(90px);
-  background-color: #1f2937;
+  background-color: #fff;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.16);
 }
 #admin_wrapper main aside .menu_left {
   width: 100%;
+  margin-top: 2rem;
 }
 #admin_wrapper main aside .menu_left ul li {
   height: 80px;
   margin: auto;
-  width: 80%;
   justify-content: center;
   position: relative;
+  border-bottom: 1px solid #e0e0e0;
+}
+#admin_wrapper main aside .menu_left ul li:hover {
+  background-color: #f0f9ff;
+}
+#admin_wrapper main aside .menu_left ul li:hover a {
+  margin-left: 35px;
 }
 #admin_wrapper main aside .menu_left ul li a {
-  color: rgba(255, 255, 255, 0.5019607843);
-  font-size: 1.8rem;
+  margin-left: 30px;
+  color: #6b727a;
+  font-size: 1.5rem;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -94,7 +110,6 @@
 }
 #admin_wrapper main .contain section .section-item-right .btn-add {
   height: 30px;
-  border: 1px solid #000;
   border-radius: 15px;
   background-color: #0284c7;
   font-size: 1rem;
@@ -104,10 +119,176 @@
 #admin_wrapper main .contain section .section-item-right .btn-add:hover {
   background-color: #005683;
 }
+#admin_wrapper main .contain .parent-form-admin {
+  width: 95%;
+  margin: auto;
+}
+#admin_wrapper main .contain .parent-form-admin form.form-main input {
+  margin-bottom: 1rem;
+}
+#admin_wrapper main .contain .parent-form-admin form.form-main label {
+  font-size: 1.25rem;
+}
+#admin_wrapper main .contain .parent-form-admin form.form-main .form-admin-company {
+  display: flex;
+}
+#admin_wrapper main .contain .parent-form-admin form.form-main .form-admin-company h4 {
+  text-align: center;
+  color: #7a7a7a;
+}
+#admin_wrapper main .contain .parent-form-admin form.form-main .form-admin-company .about-company {
+  border-radius: 15px;
+  background-color: #fff;
+  width: 55%;
+  padding: 20px;
+  margin: 10px;
+}
+#admin_wrapper main .contain .parent-form-admin form.form-main .form-admin-company .about-company .description-company textarea {
+  background-color: #fff;
+}
+#admin_wrapper main .contain .parent-form-admin form.form-main .form-admin-company .about-company .note-editor.note-frame {
+  border: 1px solid #e0e0e0;
+}
+#admin_wrapper main .contain .parent-form-admin form.form-main .form-admin-company .about-contact-person {
+  padding: 20px;
+  border-radius: 15px;
+  margin: 1rem 16px;
+  width: 750px;
+  background-color: #fff;
+  height: auto;
+}
+#admin_wrapper main .contain .parent-form-admin form.form-main .form-admin-company .network-profile {
+  height: 240px;
+}
+#admin_wrapper main .contain .parent-form-admin form.form-main .form-admin-company .compnay-form-right {
+  width: 45%;
+  height: auto;
+}
+#admin_wrapper main .contain .parent-form-admin form.form-main .form-admin-company .compnay-form-right .company-status {
+  padding: 20px;
+  margin: 10px;
+  border-radius: 15px;
+  background-color: #fff;
+}
+#admin_wrapper main .contain .parent-form-admin form.form-main .file-input-group {
+  position: relative;
+}
+#admin_wrapper main .contain .parent-form-admin form.form-main .file-input-group .input-group-append {
+  position: absolute;
+  right: 0;
+}
+#admin_wrapper main .contain .parent-form-admin form.form-main .file-input-group .input-group-append label {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  transform: translateY(-1px);
+  height: 28px;
+  font-size: 1rem;
+  background-color: #0284c7;
+  color: #111827;
+}
+#admin_wrapper main .contain .parent-form-admin form.form-main .file-input-group input[type=file] {
+  border-radius: 0;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+#admin_wrapper main .contain .parent-form-admin form.form-main input[type=text] {
+  border-radius: 5px;
+  height: 30px;
+  background-color: #fff;
+}
+#admin_wrapper main .contain .parent-form-admin form.form-main input[type=text]::-moz-placeholder {
+  color: #6b727a;
+  font-size: 1rem;
+}
+#admin_wrapper main .contain .parent-form-admin form.form-main input[type=text]::placeholder {
+  color: #6b727a;
+  font-size: 1rem;
+}
 #admin_wrapper main .contain .table-main {
-  transform: translateY(110px);
+  width: 95%;
+  margin: auto;
+  padding: 1.25rem 1.25rem 0.25rem 1.25rem;
+  background-color: #fff;
+  border-radius: 15px;
 }
 #admin_wrapper main .contain .table-main table {
-  background-color: #1f2937;
   color: #6b727a;
+  padding: 10px;
+}
+#admin_wrapper main .contain .table-main table thead {
+  border-bottom: 1px solid rgba(179, 179, 179, 0.4509803922);
+}
+#admin_wrapper main .contain .table-main table thead th {
+  color: #0284c7;
+  padding: 1rem;
+}
+#admin_wrapper main .contain .table-main table tbody tr {
+  border-bottom: 1px solid rgba(179, 179, 179, 0.4509803922);
+}
+#admin_wrapper main .contain .table-main table tbody tr:last-child {
+  border-bottom: none;
+}
+#admin_wrapper main .contain .table-main table tbody tr td {
+  padding: 1rem;
+}
+#admin_wrapper main .contain .table-main table tbody tr td a {
+  margin: 0 0.25rem;
+  font-size: 2rem;
+}
+#admin_wrapper main .contain .table-main table tbody tr td .bi-pencil-square::before {
+  color: #6b727a;
+}
+#admin_wrapper main .contain .table-main table tbody tr td .bi-x-circle::before {
+  color: #cd3545;
+}
+#admin_wrapper main .contain .table-main table tbody tr:hover {
+  background-color: #f0f9ff;
+}
+#admin_wrapper main .contain .table-main table tbody tr:hover td {
+  color: #5d5d5d;
+}
+#admin_wrapper main .contain .card-bottom {
+  height: 60px;
+  background-color: #ffffff;
+  width: 95%;
+  margin: auto;
+  border-radius: 15px;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+#admin_wrapper main .contain .card-bottom a {
+  background-color: #0284c7;
+  padding: 0 1.25rem;
+  border-radius: 18px;
+  margin: 0.25rem;
+  font-size: 1.25rem;
+  color: #000;
+}
+#admin_wrapper main .contain .card-bottom a:first-child {
+  margin-left: 2rem;
+}
+#admin_wrapper main .contain .card-bottom div {
+  position: absolute;
+  height: 100%;
+  padding-right: 10px;
+  right: 0;
+  border-left: 1px solid rgba(124, 124, 124, 0.4392156863);
+  display: flex;
+  align-items: center;
+}
+#admin_wrapper main .contain .card-bottom div select {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid #7c7c7c;
+}
+#admin_wrapper main .contain .card-bottom div p {
+  padding: 0 10px;
+  margin: 0;
 }/*# sourceMappingURL=admin_style.css.map */
