@@ -124,6 +124,7 @@ input.input-search[type="search"] {
   z-index: 1;
   position: relative;
   background-color: #fff;
+  color: #7a7a7a;
 }
 
 input[type="button"], input[type="submit"]  {
@@ -137,7 +138,7 @@ input[type="reset"]{
 }
 
 .page_active{
-  background-color: #0284c7;
+  background-color: #0284c7 !;
 }
 
 input[type="button"]:hover, input[type="submit"]:hover  {
@@ -161,7 +162,7 @@ input[type="button"]:hover, input[type="submit"]:hover  {
   height: 100%;
   width: 35px;
   font-size: 1.2rem;
-  color: #000;
+  color: #fff;
   font-weight: 600;
 }
 
@@ -487,7 +488,8 @@ label.label-search {
   border-radius: 18px;
   margin: 0.25rem;
   font-size: 1.25rem;
-  color: #000;
+  color: #646464;
+  border: 1px solid #b3b3b3;
 }
 #admin_wrapper main .contain .card-bottom a:first-child {
   margin-left: 2rem;
@@ -496,6 +498,7 @@ label.label-search {
   position: absolute;
   height: 100%;
   padding-right: 10px;
+  top: 0;
   right: 0;
   border-left: 1px solid rgba(124, 124, 124, 0.4392156863);
   display: flex;
@@ -510,4 +513,10 @@ label.label-search {
 #admin_wrapper main .contain .card-bottom div p {
   padding: 0 10px;
   margin: 0;
-}/*# sourceMappingURL=admin_style.css.map */
+}
+
+
+#admin_wrapper main .contain .card-bottom .page_active{
+  background-color: #0284c7 ;
+  color: #fff;
+}

@@ -1,12 +1,16 @@
+<?php session_start() ?>
 <?php require_once('../../connection.php') ?>
 <?php require_once('../../function.php') ?>
 <?php require_once('../top.php') ?>
 
 <body>
+
     <div id="admin_wrapper">
         <?php require_once('../header.php') ?>
         <main>
-            <?php require_once('../menu-left.php') ?>
+            <?php require_once('../menu-left.php');
+
+            ?>
             <div class="contain">
                 <section>
                     <div class="title-table">
@@ -30,13 +34,12 @@
                     $tong = callsql($sql_select_all);
                     $tong = $tong[0]['tong_category'];
                     $page = 1;
-                    $limit = 2;
-                    $avc = $_POST['limit-category'];
-                    echo $avc;
-                    if (isset($_POST['limit-category'])) {
-                        $limit = $_POST['limit-category'];
-                    }
-
+                    $limit = 5;
+                    //    $_POST['limit-category'];
+                    // if (isset($_POST['limit-category'])) {
+                    //     $limit = $_POST['limit-category'];
+                    // }
+                    
                     $tong = ceil($tong / $limit);
 
                     if (isset($_GET['page'])) {
@@ -64,6 +67,11 @@
                         </thead>
                         <tbody>
                             <?php $n = 1;
+                            $page_active = $_GET['page'];
+                            $x = 1;
+                            if (count($show_categories) < 2) {
+                                $x = 0;
+                            }
                             foreach ($show_categories as $show_category) {
                                 ?>
                                 <tr>
@@ -77,8 +85,18 @@
                                         <?php echo $show_category['name'] ?>
                                     </td>
                                     <td>
-                                        <a href="#"><i class="bi bi-eye"></i></a>
-                                        <a href="#"><i class="delete bi bi-x-circle"></i></a>
+                                        <a
+                                            href="<?php echo "admin-add-category.php?id_category={$show_category['id_category']}"; ?>"><i
+                                                class="bi bi-pencil-square"></i></a>
+                                        <a href="<?php
+                                        if ($x != 0) {
+                                            echo "delete-category-process.php?id_categories={$show_category['id_category']}&page=$page_active";
+
+                                        } else {
+                                            echo "delete-category-process.php?id_categories={$show_category['id_category']}&page=1";
+                                        }
+
+                                        ?>"><i class="delete bi bi-x-circle"></i></a>
                                     </td>
                                 </tr>
                                 <?php $n++;
@@ -88,21 +106,21 @@
 
                 </div>
                 <div class="card-bottom">
-                    <a href="#">First</a>
+                    <a href="?page=1" class="<?php if ($page_active == 1) {
+                        echo 'page_active';
+                    } ?>">First</a>
                     <?php
-                    $page_active = $_GET['page'];
                     for ($i = 1; $i <= $tong; $i++) {
                         echo '<a href="?page=' . $i . '" class=" ';
                         if ($page_active == $i) {
                             echo 'page_active';
                         }
-                        echo ' btn boder1px text-white me-2">' . $i . '</a>';
+                        echo '">' . $i . '</a>';
                     }
                     ?>
-                    <a href="#">1</a>
-                    <a id="asdvdv" href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">Last</a>
+                    <a href="<?php echo "?page=$tong" ?>" class="<?php if ($page_active == $tong) {
+                           echo 'page_active';
+                       } ?>">Last</a>
                     <form action="#" method="post">
                         <div>
                             <p>Show</p>
@@ -119,6 +137,55 @@
         </main>
     </div>
     <?php require_once('../script.php') ?>
+    <?php
+if (isset($_SESSION['category-status']) && $_SESSION['category-status'] == 1) {
+    ?>
+    <script>
+        $(document).ready(function executeExample() {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Thêm thành công'
+            })
+        });     
+    </script>
+    <?php
+} elseif (isset($_SESSION['category-status']) && $_SESSION['category-status'] == 2) {
+    ?>
+    <script>
+        $(document).ready(function executeExample() {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Cập nhật thành công'
+            })
+        });     
+    </script>
+    <?php
+}
+unset($_SESSION['category-status']);
+
+    ?>
     <script>
         $("#show-limit").on("change", function () {
             var selectData = $(this).val();
@@ -126,7 +193,7 @@
             $.ajax({
                 url: "admin-category-page.php",
                 method: 'POST',
-                data: {val: $(this).val()},
+                data: { val: $(this).val() },
                 success: function (data) {
                     $(".asdvdv").val(data);
 
