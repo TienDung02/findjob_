@@ -495,3 +495,29 @@
 
 
 // --------------------choose img --------------//
+
+
+
+
+// ------------------- Summernote -----------------------//
+$(document).ready(function () {
+    $("#desc_categories").summernote({
+        height: 200
+    });
+});
+
+
+
+// ----------------------- Clear form -------------------//
+$("#show-limit").on("change", function () {
+    var selectData = $(this).val();
+    $.ajax({
+         url: "admin-category-page.php",
+         method: 'POST',
+         data: {'selectData': selectData },
+         success: function (data) {
+             $("[type='text']").val(data);
+ 
+         }
+     });
+ });
