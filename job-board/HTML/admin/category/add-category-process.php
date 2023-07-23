@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <?php require_once('../../connection.php') ?>
 <?php
 $postday = date('Y-m-d');
@@ -12,11 +13,12 @@ $sql_insert_categories = "INSERT INTO categories (id_category , parent_id, name,
                         VALUES ('', '$parent_id', '$name_categories', '$postday' , '$updateday')";
 // echo $sql_insert_categories;
 if ($connect->query($sql_insert_categories) === TRUE) {
+    $_SESSION['category-status'] = 1;
     echo "<script>
-                            alert('Thêm thành công');
+                            // alert('Thêm thành công');
                             window.location.href = '";
     echo FULL_URL;
-    echo "/admin/category/admin-add-category.php?page=1';
+    echo "/admin/category/admin-category-page.php?page=1';
                                                 </script>";
 } else {
     echo "Lỗi: " . $sql_insert_categories . "<br>" . $conn->error;

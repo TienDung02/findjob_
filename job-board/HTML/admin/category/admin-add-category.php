@@ -16,11 +16,11 @@
 
                 <div class="parent-form-admin">
                     <form action="<?php
-                    $id_category = $_GET['id_category'] ?? '0';
+                    $id_category = $_GET['id_category'];
                     if ($id_category == 0) {
                         echo "add-category-process.php";
                     } else {
-                        // echo "edit_categories_process.php?id_categories=$id_categories";
+                        echo "edit-category-process.php?id_category=$id_category";
                     }
                     ?>" method="post" class="form-main">
                         <div class="form-admin-company flex-wrap">
@@ -30,10 +30,11 @@
                                     if ($id_category == 0) {
                                         echo "<h4>Add category</h4>";
                                     } else {
-                                        echo "<h4>Edit category</h4>";
-                                        // $category_sql3 = "select * from category where id_categories  = $id_categories";
-                                        // $category_ = callsql($category_sql3);
-                                        // $category_ = $category_[0];
+                                        $category_sql3 = "select * from categories where id_category = $id_category";
+                                        $category_ = callsql($category_sql3);
+                                        echo "<h4>Edit category";
+                                        echo "</h4>";
+                                        $category_ = $category_[0];
                                     }
                                     ?>
                                 </h4>
@@ -46,14 +47,14 @@
                                         $show_parent_categories = callsql($sql_select_parent_id);
                                         foreach ($show_parent_categories as $show_parent_category) {
                                             $selected = '';
-                                            if ($id_categories == 0) {
+                                            if ($id_category == 0) {
                                             } else {
-                                                if ($category_['parent_id'] == $show_parent_category['id_categories']) {
+                                                if ($category_['parent_id'] == $show_parent_category['id_category']) {
                                                     $selected = 'selected';
                                                 }
                                             }
-
-                                            echo "<option " . $selected . " value='" . $show_parent_category['parent_id'] . "'>" . $show_parent_category['id_category '] . "</option>";
+                                            
+                                            echo "<option " . $selected . " value='" . $show_parent_category['id_category'] . "'>" . $show_parent_category['name'] . "</option>";
                                         }
                                         $connect->close();
                                         ?>
@@ -61,11 +62,11 @@
                                 </div>
                                 <div class="form-admin-insert-data">
                                     <label for="#">Category name</label>
-                                    <input type="text" name="category-name">
+                                    <input type="text" name="category-name" value="<?php if($id_category != 0){echo $category_['name']; }?>">
                                 </div>
                                 <div class="form-group d-flex m-auto" style="width:23rem;">
                                     <input type="submit" style="width:10rem;" value="Save"   class="btn me-5 mt-3 rounded-pill">
-                                    <input type="reset"  style="width:10rem;" value="CANCEL" class="btn btn-danger mt-3 rounded-pill" onClick="document.location.href='<?php echo FULL_URL; ?>/admin/category/admin-category-page.php'"  >
+                                    <input type="reset"  style="width:10rem;" value="CANCEL" class="btn btn-danger mt-3 rounded-pill" onClick="document.location.href='<?php echo FULL_URL; ?>/admin/category/admin-category-page.php?page=1'"  >
                                 </div>
                             </div>
                         </div>
