@@ -500,11 +500,11 @@
 
 
 // ------------------- Summernote -----------------------//
-$(document).ready(function () {
-    $("#desc_categories").summernote({
-        height: 200
-    });
-});
+// $(document).ready(function () {
+//     $("#desc_categories").summernote({
+//         height: 200
+//     });
+// });
 
 
 
@@ -521,3 +521,18 @@ $("#show-limit").on("change", function () {
          }
      });
  });
+
+
+//---------------------- Active type register ------------//
+$(document).ready(function () {
+    $(".candidate_reg").click(function(){
+        $(this).addClass('active');
+        $('.employer_reg').removeClass('active');
+        $('#reg_email').val('1');
+    });
+    $(".employer_reg").click(function(){
+        $(this).addClass('active');
+        $('.candidate_reg').removeClass('active');
+        $('#reg_email').val('2');
+    });
+});

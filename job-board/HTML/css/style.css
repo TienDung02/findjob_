@@ -58,7 +58,10 @@ header {
 	float: left;
 }
 
-#logo img { margin-top: 24px; }
+#logo img {
+	height: 40px;
+	margin: 24px 0;
+}
 
 
 /* Full-Width Header Styles */
@@ -960,7 +963,24 @@ table.manage-table td.action a:hover { color: #505050; }
 	margin-top: 8px;
 }
 
+.form-row .type_reg{
+	width: 200px;
+	background-color: #fff;
+	border: 1px solid #a0a0a0;
+	color: #0c0c0c;
+}
+.form-row .type_reg:hover{
+	background-color: #1a704880;
+	color: #000;
+}
 
+.form-row .type_reg:first-child{
+	margin-right: 26px;
+}
+
+.form-row .active{
+	background-color: #58ba2b;
+}
 
 /* ---------------------------------- */
 /* Resume Table
