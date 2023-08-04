@@ -9,12 +9,7 @@ $sql_update_product = "UPDATE categories SET parent_id = '$parent_id', name = '$
 // echo $sql_update_product;die;
 if ($connect->query($sql_update_product) === TRUE) {
         $_SESSION['category-status'] = 2;
-        echo "<script>
-                                // alert('Thêm thành công');
-                                window.location.href = '";
-        echo FULL_URL;
-        echo "/admin/category/admin-category-page.php?page=1';
-                                                    </script>";
+    header("location:admin-category-page.php?page=1");
 } else {
         echo "Lỗi: " . $sql_update_product . "<br>" . $conn->error;
 }

@@ -187,7 +187,7 @@
 				<h3>Perfect Theme for Your Own Job Board</h3>
 				<p>Work Scout is a premium theme that is perfect for recruiters and job offices</p>
 			</div>
-			<a href="my-account.php" class="button">Get This Theme</a>
+			<a href="my_account.php" class="button">Get This Theme</a>
 			<div class="clearfix"></div>
 		</div>
 

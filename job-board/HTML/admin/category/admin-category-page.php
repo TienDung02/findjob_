@@ -1,14 +1,14 @@
 <?php session_start() ?>
 <?php require_once('../../connection.php') ?>
 <?php require_once('../../function.php') ?>
-<?php require_once('../top.php') ?>
+<?php require_once('../admin_head.php') ?>
 
 <body>
 
     <div id="admin_wrapper">
-        <?php require_once('../header.php') ?>
+        <?php require_once('../admin_header.php') ?>
         <main>
-            <?php require_once('../menu-left.php');
+            <?php require_once('../admin_menu_left.php');
 
             ?>
             <div class="contain">
@@ -24,7 +24,7 @@
                             <button class="button-search" type="submit">Go</button>
                         </form>
                         <button
-                            onClick="document.location.href='<?php echo FULL_URL; ?>/admin/category/admin-add-category.php?id_category=0'"
+                            onClick="document.location.href='/admin/category/admin-add-category.php?id_category=0'"
                             class="btn-add">ADD NEW</button>
                     </div>
                 </section>
@@ -44,9 +44,12 @@
 
                     if (isset($_GET['page'])) {
                         $page = $_GET['page'];
+                        if($page == 'last'){
+                            $page = $tong;
+                        }
                     }
                     $start = ($page - 1) * $limit;
-                    $sql_select_all = "SELECT t1.*,t2.name AS parent_name FROM categories t1 LEFT JOIN categories t2 ON t2.parent_id=t2.id_category  limit $start,$limit";
+                    $sql_select_all = "SELECT t1.*,t2.name AS parent_name FROM categories t1 LEFT JOIN categories t2 ON t1.parent_id=t2.id_category  limit $start,$limit";
                     // echo $sql_select_all;die;
                     $show_categories = callsql($sql_select_all);
                     ?>
@@ -67,7 +70,6 @@
                         </thead>
                         <tbody>
                             <?php $n = 1;
-                            $page_active = $_GET['page'];
                             $x = 1;
                             if (count($show_categories) < 2) {
                                 $x = 0;
@@ -90,7 +92,7 @@
                                                 class="bi bi-pencil-square"></i></a>
                                         <a href="<?php
                                         if ($x != 0) {
-                                            echo "delete-category-process.php?id_categories={$show_category['id_category']}&page=$page_active";
+                                            echo "delete-category-process.php?id_categories={$show_category['id_category']}&page=$page";
 
                                         } else {
                                             echo "delete-category-process.php?id_categories={$show_category['id_category']}&page=1";
@@ -106,19 +108,19 @@
 
                 </div>
                 <div class="card-bottom">
-                    <a href="?page=1" class="<?php if ($page_active == 1) {
+                    <a href="?page=1" class="<?php if ($page == 1) {
                         echo 'page_active';
                     } ?>">First</a>
                     <?php
                     for ($i = 1; $i <= $tong; $i++) {
                         echo '<a href="?page=' . $i . '" class=" ';
-                        if ($page_active == $i) {
+                        if ($page == $i) {
                             echo 'page_active';
                         }
                         echo '">' . $i . '</a>';
                     }
                     ?>
-                    <a href="<?php echo "?page=$tong" ?>" class="<?php if ($page_active == $tong) {
+                    <a href="<?php echo "?page=$tong" ?>" class="<?php if ($page == $tong) {
                            echo 'page_active';
                        } ?>">Last</a>
                     <form action="#" method="post">
@@ -136,7 +138,7 @@
             </div>
         </main>
     </div>
-    <?php require_once('../script.php') ?>
+    <?php require_once('../admin_script.php') ?>
     <?php
 if (isset($_SESSION['category-status']) && $_SESSION['category-status'] == 1) {
     ?>

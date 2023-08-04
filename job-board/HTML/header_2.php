@@ -1,14 +1,14 @@
-<header>
-    <div class="container">
-        <div class="sixteen columns">
+<header class="header_2">
+    <div class="fixed-top header_2_block" >
+        <div class="sixteen columns d-flex h-100 position-relative">
 
             <!-- Logo -->
-            <div id="logo">
+            <div class="logo">
                 <h1><a href="index.php"><img src="images/logo.png" alt="Work Scout" style="padding: 0" /></a></h1>
             </div>
 
             <!-- Menu -->
-            <nav id="navigation" class="menu">
+            <nav id="navigation" class="menu ">
                 <ul id="responsive">
 
                     <li><a href="#">Pages</a>
@@ -46,13 +46,27 @@
                 </ul>
 
 
-                <ul class="float-right">
-                    <li><a href="my_account.php#tab2"><i class="fa fa-user"></i> Sign Up</a></li>
-                    <li><a href="my_account.php"><i class="fa fa-lock"></i> Log In</a></li>
-                </ul>
 
             </nav>
+            <div class="avatar_user position-absolute">
 
+                <div class="dropdown">
+                    <div class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="images/user.png" alt="">
+                    </div>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li onclick="location.href = 'my_profile.php' ">
+                            <a href="my_profile.php">My Profile</a>
+                        </li>
+                        <li onclick="location.href = 'my_account.php' ">
+                            <a href="my_account.php">Logout</a>
+                        </li>
+                        <li onclick="location.href = '#' ">
+                            <a href="my_account.php">Messenger &nbsp; <span>2</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <!-- Navigation -->
             <div id="mobile-navigation">
                 <a href="#menu" class="menu-trigger"><i class="fa fa-reorder"></i> Menu</a>

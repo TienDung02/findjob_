@@ -310,6 +310,7 @@ label.label-search {
 #admin_wrapper main .contain {
   margin-left: 250px;
   transform: translateY(90px);
+  background-color: #f3f4f6;
 }
 #admin_wrapper main .contain section {
   padding: 3rem;

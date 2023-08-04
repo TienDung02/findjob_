@@ -1,4 +1,5 @@
 <?php
+global $connect;
 $connect;
 $connect = new mysqli('localhost', 'root', '', 'worksout');
 if ($connect->errno !== 0) {

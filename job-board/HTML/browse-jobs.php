@@ -1,31 +1,13 @@
-<!DOCTYPE html>
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
-<head>
+<?php session_start() ?>
+<?php require_once('connection.php') ?>
+<?php require_once('function.php') ?>
+<?php require_once('admin/admin_head.php') ?>
+<?php require_once ('head.php')?>
 
-    <!-- Basic Page Needs
-    ================================================== -->
-    <meta charset="utf-8">
-    <title>Work Scout</title>
 
-    <!-- Mobile Specific Metas
-    ================================================== -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <!-- CSS
-    ================================================== -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/colors/green.css" id="colors">
-
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-<div id="wrapper">
-
+<!-- Header
+================================================== -->
+<?php require_once('header.php') ?>
 <div class="clearfix"></div>
 
 

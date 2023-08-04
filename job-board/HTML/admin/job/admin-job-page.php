@@ -1,9 +1,9 @@
-<?php require_once('../top.php') ?>
+<?php require_once('../admin_head.php') ?>
 <body>
     <div id="admin_wrapper">
-        <?php require_once('../header.php') ?>
+        <?php require_once('../admin_header.php') ?>
         <main>
-            <?php require_once('../menu-left.php') ?>
+            <?php require_once('../admin_menu_left.php') ?>
             <div class="contain">
                 <section>
                     <div class="title-table">
@@ -79,7 +79,7 @@
             </div>
         </main>
     </div>
-    <?php require_once('../script.php') ?>
+    <?php require_once('../admin_script.php') ?>
 </body>
 
 </html>
