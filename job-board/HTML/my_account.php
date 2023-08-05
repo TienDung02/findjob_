@@ -31,29 +31,6 @@
 
 <!-- Content
 ================================================== -->
-<?php
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>
-
-
-
-
 <!-- Container -->
 <div class="container">
 
@@ -80,7 +57,7 @@
 
 					<p class="form-row form-row-wide">
 						<label for="password">Password:</label>
-						<input class="input-text" type="text" name="password" id="password" />
+						<input class="input-text" type="password" name="password" id="password" />
 					</p>
 
 					<p class="form-row">
@@ -178,7 +155,7 @@ if (isset($_SESSION['reg']) && $_SESSION['reg'] == 1) {
         $(document).ready(function executeExample() {
             Swal.fire({
                 icon: 'error',
-                title: 'Đăng ký không thành công, email đã được sử dụng!',
+                title: 'Đăng ký không thành công, email hoặc tên đăng nhập đã được sử dụng!',
                 showClass: {
                     popup: 'animate__animated animate__fadeInDown'
                 },
@@ -192,7 +169,7 @@ if (isset($_SESSION['reg']) && $_SESSION['reg'] == 1) {
     <?php
 }
 unset($_SESSION['reg']);
- if (isset($_SESSION['login']) && $_SESSION['login'] == 1) {
+ if (isset($_SESSION['login_success']) && $_SESSION['login_success'] == 1) {
      ?>
      <script>
          $(document).ready(function executeExample() {
@@ -214,13 +191,13 @@ unset($_SESSION['reg']);
          });
      </script>
      <?php
- } elseif (isset($_SESSION['login']) && $_SESSION['login'] == 0) {
+ } elseif (isset($_SESSION['login_success']) && $_SESSION['login_success'] == 0) {
      ?>
      <script>
          $(document).ready(function executeExample() {
              Swal.fire({
                  icon: 'error',
-                 title: 'Đăng nhập không thành công!',
+                 title: 'Đăng nhập không thành công! Tài khoản hoặc mật khẩu không đúng!',
                  showClass: {
                      popup: 'animate__animated animate__fadeInDown'
                  },
@@ -233,7 +210,7 @@ unset($_SESSION['reg']);
      </script>
      <?php
  }
- unset($_SESSION['login']);
+ unset($_SESSION['login_success']);
 ?>
 
 </body>

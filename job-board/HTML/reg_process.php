@@ -19,7 +19,7 @@ $updateday = date('Y-m-d');
 //Load Composer's autoloader
 require 'vendor/autoload.php';
 
-$select = mysqli_query($connect, "SELECT `email` FROM `user` WHERE `email` = '".$_POST['email']."'") or exit(mysqli_error($connect));
+$select = mysqli_query($connect, "SELECT `email` FROM `user` WHERE `email` = '".$_POST['email']."' or `user_name` = '".$_POST['user_name']."' ") or exit(mysqli_error($connect));
 if(mysqli_num_rows($select)) {
     $_SESSION['reg'] = 2;
 //    echo "111111111";die;

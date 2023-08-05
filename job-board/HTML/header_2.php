@@ -1,10 +1,11 @@
+<?php //session_start() ?>
 <header class="header_2">
-    <div class="fixed-top header_2_block" >
+    <div class="fixed-top header_2_block">
         <div class="sixteen columns d-flex h-100 position-relative">
 
             <!-- Logo -->
             <div class="logo">
-                <h1><a href="index.php"><img src="images/logo.png" alt="Work Scout" style="padding: 0" /></a></h1>
+                <h1><a href="index.php"><img src="images/logo.png" alt="Work Scout" style="padding: 0"/></a></h1>
             </div>
 
             <!-- Menu -->
@@ -21,40 +22,47 @@
                             <li><a href="contact.php">Contact</a></li>
                         </ul>
                     </li>
-
-                    <li><a href="#">For Candidates</a>
-                        <ul>
-                            <li><a href="browse-jobs.php">Browse Jobs</a></li>
-                            <li><a href="browse-categories.php">Browse Categories</a></li>
-                            <li><a href="add-resume.php">Add Resume</a></li>
-                            <li><a href="manage-resumes.php">Manage Resumes</a></li>
-                            <li><a href="job-alerts.php">Job Alerts</a></li>
-                        </ul>
-                    </li>
-
-                    <li><a href="#">For Employers</a>
-                        <ul>
-                            <li><a href="add-job.php">Add Job</a></li>
-                            <li><a href="manage-jobs.php">Manage Jobs</a></li>
-                            <li><a href="manage-applications.php">Manage Applications</a></li>
-                            <li><a href="browse-resumes.php">Browse Resumes</a></li>
-                            <li><a href="add_company.php">Add Company</a></li>
-                        </ul>
-                    </li>
-
+                    <?php
+                    if ($_SESSION['login']['role'] == 1){
+                        ?>
+                        <li><a href="browse-jobs.php">Browse Jobs</a></li>
+                        <li><a href="browse-categories.php">Browse Categories</a></li>
+                        <li><a href="add-resume.php">Add Resume</a></li>
+                        <li><a href="manage-resumes.php">Manage Resumes</a></li>
+                        <li><a href="job-alerts.php">Job Alerts</a></li>
+                    <?php
+                    }
+                    ?>
+                    <?php
+                    if ($_SESSION['login']['role'] == 2){
+                        ?>
+                        <li><a href="add-job.php">Add Job</a></li>
+                        <li><a href="manage-jobs.php">Manage Jobs</a></li>
+                        <li><a href="manage-applications.php">Manage Applications</a></li>
+                        <li><a href="browse-resumes.php">Browse Resumes</a></li>
+                        <li><a href="add_company.php">Add Company</a></li>
+                    <?php
+                    }
+                    ?>
                     <li><a href="blog.php">Blog</a></li>
                 </ul>
-
 
 
             </nav>
             <div class="avatar_user position-absolute">
 
                 <div class="dropdown">
-                    <div class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="images/user.png" alt="">
+                    <div class=" dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                         aria-expanded="false">
+                        <img src="<?php
+                        if ($data_null != 0 && $data_user['avatar'] != '') {
+                            echo $data_user['avatar'];
+                        } else {
+                            echo 'images/user.png';
+                        }
+                        ?>">
                     </div>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <ul class="dropdown-menu menu_profile" aria-labelledby="dropdownMenuButton1">
                         <li onclick="location.href = 'my_profile.php' ">
                             <a href="my_profile.php">My Profile</a>
                         </li>

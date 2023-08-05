@@ -476,33 +476,26 @@
         function startTimer() {
             document.write("hey");
         }
-        $('#fileInput2').on('change', function(){
-            var control = $('#inputFileMaskText2');
-            control.val(this.files[0].name);
-        });
+        // $('#fileInput2').on('change', function(){
+        //     var control = $('#inputFileMaskText2');
+        //     control.val(this.files[0].name);
+        // });
 
-        $('.nav-link li').click(function() {
-            $(this).addClass('active').siblings().removeClass('active');
+        $('#fileInput2').on('change', function() {
+            let $input;
+            $input = $(this);
+            if($input.val().length > 0) {
+                let fileReader;
+                fileReader = new FileReader();
+                fileReader.onload = function (data) {
+                    $('.image-preview').attr('src', data.target.result);
+                }
+                fileReader.readAsDataURL($input.prop('files')[0]);
+                $('.image-preview').css('display', 'block');
+            }
         });
 
 // ------------------ End Document ------------------ //
     });
 
 })(this.jQuery);
-
-
-// $(document).ready(function() {
-//     $(".bootstrap-tagsinput > input").addClass("input_tags_");
-//     setTimeout(function() {
-//         // if ($('.tag').length) {
-//         //     alert("tim` thay");
-//         //     $(".input_tags_").removeAttr("required");
-//         // }else {
-//         //     alert('khong tim thay');
-//         //     $(".input_tags_").attr("required", "true").attr("placeholder", "Enter tags");
-//         // }
-//
-//         alert('heyyy');
-//
-//     }, 100);
-// });

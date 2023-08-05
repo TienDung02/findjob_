@@ -1,7 +1,6 @@
 <?php session_start() ?>
 <?php require_once ('connection.php')?>
 <?php require_once ('function.php')?>
-
 <?php require_once('head.php') ?>
 
 
