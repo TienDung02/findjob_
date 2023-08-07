@@ -88,14 +88,14 @@
                                     </td>
                                     <td>
                                         <a
-                                            href="<?php echo "admin-add-category.php?id_category={$show_category['id_category']}"; ?>"><i
+                                            href="<?php echo "admin-add-industry.php?id_category={$show_category['id_category']}"; ?>"><i
                                                 class="bi bi-pencil-square"></i></a>
                                         <a href="<?php
                                         if ($x != 0) {
-                                            echo "delete-category-process.php?id_categories={$show_category['id_category']}&page=$page";
+                                            echo "delete-industry-process.php?id_categories={$show_category['id_category']}&page=$page";
 
                                         } else {
-                                            echo "delete-category-process.php?id_categories={$show_category['id_category']}&page=1";
+                                            echo "delete-industry-process.php?id_categories={$show_category['id_category']}&page=1";
                                         }
 
                                         ?>"><i class="delete bi bi-x-circle"></i></a>

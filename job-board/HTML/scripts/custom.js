@@ -450,16 +450,18 @@
             anchor.parent('li').trigger("click");
         }
 
-        // -----------------------  -------------------//
-        // $("#show-limit").on("change", function () {
-        //     var selectData = $(this).val();
-        //     $.ajax({
-        //         url: "admin-category-page.php", method: 'POST', data: {'selectData': selectData}, success: function (data) {
-        //             $("[type='text']").val(data);
-        //
-        //         }
-        //     });
-        // });
+        // ----------------------- Change Type Register -------------------//
+        $('.candidate_reg').click(function(){
+            $(this).addClass('active');
+            $('.employer_reg').removeClass('active');
+            $('#reg_type').val('1');
+        });
+
+        $('.employer_reg').click(function(){
+            $(this).addClass('active');
+            $('.candidate_reg').removeClass('active');
+            $('#reg_type').val('2');
+        });
 
         $(".tags_input").tagsinput({
             maxTags: 4,

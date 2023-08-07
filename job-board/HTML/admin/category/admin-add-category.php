@@ -18,9 +18,9 @@
                     <form action="<?php
                     $id_category = $_GET['id_category'];
                     if ($id_category == 0) {
-                        echo "add-category-process.php";
+                        echo "add-industry-process.php";
                     } else {
-                        echo "edit-category-process.php?id_category=$id_category";
+                        echo "edit-industry-process.php?id_category=$id_category";
                     }
                     ?>" method="post" class="form-main">
                         <div class="form-admin-company flex-wrap">

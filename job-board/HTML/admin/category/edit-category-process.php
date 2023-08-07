@@ -9,7 +9,7 @@ $sql_update_product = "UPDATE categories SET parent_id = '$parent_id', name = '$
 // echo $sql_update_product;die;
 if ($connect->query($sql_update_product) === TRUE) {
         $_SESSION['category-status'] = 2;
-    header("location:admin-category-page.php?page=1");
+    header("location:admin-industry-page.php?page=1");
 } else {
         echo "Lỗi: " . $sql_update_product . "<br>" . $conn->error;
 }

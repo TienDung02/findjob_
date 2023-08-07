@@ -34,25 +34,23 @@ function custom_price_echo($numbers)
 }
 
 
-function checkSession1(){
-        if (isset($_SESSION['user'])){
-                if($_SESSION['user']['role'] != 1 && $_SESSION['user']['role'] != 0){
-                        // header("Location:" . FULL_URL . "/html/login/login.php");
-                }
+function checkLogged(){
+        if (isset($_SESSION['logged']) && $_SESSION['logged'] != 0){
+            return 1;
         }else{
-                // header("Location:" . FULL_URL . "/html/login/login.php");
+            return 0;
         }
 }
 
-function checkSession2(){
-        if (isset($_SESSION['user'])){
-                if($_SESSION['user']['role'] != 1){
-                        header("Location:" . FULL_URL . "/html/login/login.php");
-                }
-        }else{
-                header("Location:" . FULL_URL . "/html/login/login.php");
-        }
+
+function isCandidate()
+{
+    return ($_SESSION['login']['role'] == 1);
 }
 
+function isEmployer()
+{
+    return ($_SESSION['login']['role'] == 2);
+}
 
 ?>

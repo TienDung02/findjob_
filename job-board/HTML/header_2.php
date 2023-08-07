@@ -1,4 +1,25 @@
-<?php //session_start() ?>
+<?php
+if (!isset($_SESSION['login'])){
+    header("location:my_account.php");
+    exit();
+}
+
+
+$type_user = 'employer';
+$data_null = 1;
+if ($_SESSION['login']['role'] == 1) {
+    $type_user = 'candidate';
+}
+$sql_select = "select * from `$type_user` where `id_user` = '" . $_SESSION['login']['id_user'] . "' ";
+//echo $sql_select;die;
+$data_user = callsql($sql_select);
+if (empty($data_user)) {
+    $data_null = 0;
+} else {
+    $data_user = $data_user[0];
+}
+
+?>
 <header class="header_2">
     <div class="fixed-top header_2_block">
         <div class="sixteen columns d-flex h-100 position-relative">
@@ -23,7 +44,7 @@
                         </ul>
                     </li>
                     <?php
-                    if ($_SESSION['login']['role'] == 1){
+                    if (isCandidate()){
                         ?>
                         <li><a href="browse-jobs.php">Browse Jobs</a></li>
                         <li><a href="browse-categories.php">Browse Categories</a></li>
@@ -34,7 +55,7 @@
                     }
                     ?>
                     <?php
-                    if ($_SESSION['login']['role'] == 2){
+                    if (isEmployer()){
                         ?>
                         <li><a href="add-job.php">Add Job</a></li>
                         <li><a href="manage-jobs.php">Manage Jobs</a></li>
@@ -66,12 +87,13 @@
                         <li onclick="location.href = 'my_profile.php' ">
                             <a href="my_profile.php">My Profile</a>
                         </li>
-                        <li onclick="location.href = 'my_account.php' ">
-                            <a href="my_account.php">Logout</a>
-                        </li>
                         <li onclick="location.href = '#' ">
-                            <a href="my_account.php">Messenger &nbsp; <span>2</span></a>
+                            <a href="my_account.php">Messenger<span>2</span></a>
                         </li>
+                        <li onclick="location.href = 'logout.php' ">
+                            <a href="logout.php">Logout</a>
+                        </li>
+
                     </ul>
                 </div>
             </div>

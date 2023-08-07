@@ -3,22 +3,6 @@
 <?php require_once('function.php') ?>
 <?php require_once('head.php') ?>
 <?php
-$type_user = '';
-$data_null = 1;
-if ($_SESSION['login']['role'] == 1) {
-    $type_user = 'candidate';
-} else if ($_SESSION['login']['role'] == 2) {
-    $type_user = 'company';
-} else {
-    $type_user = 'admin';
-}
-$sql_select = "select * from `$type_user` where `id_user` = '" . $_SESSION['login']['id_user'] . "' ";
-$data_user = callsql($sql_select);
-if (empty($data_user)) {
-    $data_null = 0;
-} else {
-    $data_user = $data_user[0];
-}
 
 
 ?>
@@ -41,7 +25,7 @@ if (empty($data_user)) {
             <hr>
         </div>
 
-        <form class="form_add_company" method="post" action="edit_profile_process.php" style="width: 80%">
+        <form class="form_add_company" method="post" enctype="multipart/form-data" action="edit_profile_process.php" style="width: 80%">
 
             <div class="form w-100" style="background-color: #f5f5f5bf;padding: 0px 54px;">
                 <h3>Profile Details</h3>
@@ -92,11 +76,11 @@ if (empty($data_user)) {
                 </div>
                 <div class="form">
                     <h5>E-mail</h5>
-                    <input class="search-field" type="text" name="email" placeholder="" value="<?php if ($data_null != 0) { echo $data_user['email']; } ?>" required/>
+                    <input class="search-field" type="text" readonly placeholder="" value="<?php if ($data_null != 0) { echo $data_user['email']; } ?>" required/>
                 </div>
                 <div class="form">
                     <h5>About me</h5>
-                    <textarea name="desc"><?php if ($data_null != 0) { echo $data_user['about_candidate']; } ?></textarea>
+                    <textarea name="desc"><?php if ($data_null != 0) { echo $data_user['about']; } ?></textarea>
                 </div>
 
 

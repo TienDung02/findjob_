@@ -85,7 +85,7 @@
                         <p class="form-row d-flex form-row-wide">
                             <input type="button" value="Candidate" class="type_reg candidate_reg active">
                             <input type="button" value="Employer" class="type_reg employer_reg">
-                            <input type="hidden"  name="type_register" id="reg_email" value="1" />
+                            <input type="hidden"  name="type_register" id="reg_type" value="1" />
                         </p>
 						
 						<p class="form-row form-row-wide">

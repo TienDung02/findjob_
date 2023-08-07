@@ -17,7 +17,7 @@
 
     <div class="contain" style="margin: auto; width: calc(100% - 260px);background-color: #f7f7f7">
 
-        <form class="form_add_company" method="post" action="" style="width: 70%">
+        <form class="form_add_company" method="post" action="change_password_process.php" style="width: 70%">
 
             <div class="form w-100" style="background-color: #f5f5f5bf;padding: 0px 54px;">
                 <h3>Change Password</h3>
@@ -33,7 +33,7 @@
                     <input class="search-field" type="password" name="new_password" placeholder="" value="" required/>
                 </div>
                 <div class="form">
-                    <h5>Confirm New Password</h5>
+                    <h5>Confirm Password</h5>
                     <input class="search-field" type="password" name="confirm_password" placeholder="" value="" required/>
                 </div>
                 <div class="form">
@@ -55,7 +55,7 @@
 ================================================== -->
 <?php require_once('script_tag.php') ?>
 <?php
-if (isset($_SESSION['insert_job']) && $_SESSION['insert_job'] == 1) {
+if (isset($_SESSION['change_password']) && $_SESSION['change_password'] == 1) {
     ?>
     <script>
         $(document).ready(function executeExample() {
@@ -72,18 +72,53 @@ if (isset($_SESSION['insert_job']) && $_SESSION['insert_job'] == 1) {
             })
             Toast.fire({
                 icon: 'success',
-                title: 'Thêm thành công'
+                title: 'Update success'
             })
         });
     </script>
     <?php
-} elseif (isset($_SESSION['insert_job']) && $_SESSION['insert_job'] == 0) {
+} elseif (isset($_SESSION['change_password']) && $_SESSION['change_password'] == 0) {
     ?>
     <script>
         $(document).ready(function executeExample() {
             Swal.fire({
                 icon: 'error',
-                title: 'Lỗi hệ thống!',
+                title: 'Error system!',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        });
+
+    </script>
+    <?php
+}elseif (isset($_SESSION['change_password']) && $_SESSION['change_password'] == 2) {
+    ?>
+    <script>
+        $(document).ready(function executeExample() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Current password incorrect!',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        });
+    </script>
+    <?php
+}elseif (isset($_SESSION['change_password']) && $_SESSION['change_password'] == 3) {
+    ?>
+    <script>
+        $(document).ready(function executeExample() {
+            Swal.fire({
+                icon: 'error',
+                title: 'New password and confirm password inconsistent!',
                 showClass: {
                     popup: 'animate__animated animate__fadeInDown'
                 },

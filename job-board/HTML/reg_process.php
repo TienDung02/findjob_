@@ -1,4 +1,3 @@
-
 <?php session_start() ?>
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
@@ -56,9 +55,14 @@ if(mysqli_num_rows($select)) {
     }
 
     $sql_insert_user = "insert into user (id_user, user_name, email, password, role, create_day, update_day) values ('', '$user_name', '$email', '$pass', $type_register, '$postday', '$updateday')";
-//echo $sql_insert_user;die;
+    if ($type_register == 1){
+        $sql_insert_profile = "insert into candidate (avatar, first_name, last_name, tel, email, about, create_day) values ('', '', '', '', '$email', '', '$postday')";
+    }else{
+        $sql_insert_profile = "insert into employer (avatar, first_name, last_name, tel, email, about, create_day) values ('', '', '', '', '$email', '', '$postday')";
+    }
 
-    if ($connect->query($sql_insert_user) === TRUE) {
+
+    if ($connect->query($sql_insert_user) === TRUE && $connect->query($sql_insert_profile) === TRUE) {
         $_SESSION['reg'] = 1;
         header("location:my_account.php");
     } else {

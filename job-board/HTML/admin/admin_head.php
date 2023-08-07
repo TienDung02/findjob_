@@ -21,9 +21,8 @@
 
 <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.18/dist/sweetalert2.min.css"-->
 <!--        integrity="sha256-7jUS+MWeqkFdmW9ozkZ7mPagz+QmMbsBlt+Q3MsE+FU=" crossorigin="anonymous">-->
-
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/admin_style.css">
+    <link rel="stylesheet" href="../../css/admin_style.css?v=<?php echo time() ?>">
+    <link rel="stylesheet" href="../../css/style.css?v=<?php echo time() ?>">
 
 
 </head>

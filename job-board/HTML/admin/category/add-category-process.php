@@ -14,7 +14,7 @@ $sql_insert_categories = "INSERT INTO categories (id_category , parent_id, name,
 // echo $sql_insert_categories;
 if ($connect->query($sql_insert_categories) === TRUE) {
     $_SESSION['category-status'] = 1;
-    header("location:admin-category-page.php?page=1");
+    header("location:admin-industry-page.php?page=1");
 } else {
     echo "Lỗi: " . $sql_insert_categories . "<br>" . $conn->error;
 }
