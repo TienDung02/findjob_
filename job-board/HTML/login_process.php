@@ -12,12 +12,13 @@ if (!empty($login)) {
     $login = $login[0];
     if ($pass == $login['password']) {
         $_SESSION['login'] = $login;
-        $_SESSION['logged'] = 1;
         $_SESSION['login_success'] = 1;
         if ($login['role'] == 3){
-            header("location:admin/category/admin-industry-page.php?page=1");
+            $_SESSION['login']['role'] == 3;
+            header("location:admin/category/admin-category-page.php?page=1");
+        }else{
+            header("location:my_profile.php");
         }
-        header("location:my_profile.php");
     } else {
         $_SESSION['login_success'] = 0;
         header("location:my_account.php");

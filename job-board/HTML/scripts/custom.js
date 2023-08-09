@@ -443,6 +443,7 @@
         });
         var hash = window.location.hash;
         var anchor = $('.tabs-nav a[href="' + hash + '"]');
+
         if (anchor.length === 0) {
             $(".tabs-nav li:first").addClass("active").show(); //Activate first tab
             $(".tab-content:first").show(); //Show first tab content
@@ -463,25 +464,12 @@
             $('#reg_type').val('2');
         });
 
+        // ----------------------- Input Plugin -------------------//
         $(".tags_input").tagsinput({
             maxTags: 4,
         });
 
-
-        $(".bootstrap-tagsinput > input").addClass("input_tags_");
-
-        function init() {
-            var startInterval/*in milliseconds*/ = 1000;
-            setTimeout(startTimer, startInterval);
-        }
-
-        function startTimer() {
-            document.write("hey");
-        }
-        // $('#fileInput2').on('change', function(){
-        //     var control = $('#inputFileMaskText2');
-        //     control.val(this.files[0].name);
-        // });
+        // ----------------------- My Profile Preview Image -------------------//
 
         $('#fileInput2').on('change', function() {
             let $input;
@@ -496,6 +484,58 @@
                 $('.image-preview').css('display', 'block');
             }
         });
+
+        // ----------------------- Upload File Get File Name -------------------//
+
+        $('.fileInput2').on('change', function () {
+            var parent = $(this).parents('.controlContainer').first();
+            var fileName = $(this)[0].files[0].name;
+            $(parent).find('.inputFileMaskText2').first().val(fileName);
+            // $('.inputFileMaskText2').val(fileName);
+        });
+
+
+        // ------------------------ Input Date --------------------------------- //
+
+                /* :: DATE PICKER
+         ------------------------------------------------ */
+
+        // :: DAY
+        var $select_day = $("#select_day");
+        for (var i = 1; i < 32; i++) {
+            var day_number = i;
+            $('<option>')
+                .val(('0' + day_number).slice(-2))   // set the value
+                .text(i)    // set the text in in the <option>
+                .appendTo($select_day);
+        }
+
+        // :: MONTH
+        var $select_month = $("#select_month");
+        var options = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        for (var i = 0; i < options.length; i++) {
+            var month_number = i + 1;
+            $('<option>')
+                .val(('0' + month_number).slice(-2))          // set the value
+                .text(options[i])    // set the text in in the <option>
+                .appendTo($select_month);
+        }
+
+        // :: YEAR
+        var $select_year = $("#select_year");
+
+        // Get the current year
+        var year = new Date().getFullYear();
+        var $select_year = $('#select_year').empty();
+
+        for (var i = 0; i < 99; i++) {
+            $('<option>')
+                .val(year - i)     // set the value
+                .text(year - i)    // set the text in in the <option>
+                .appendTo($select_year);
+        }
+
+        // ----------------------- End Input Date -------------------------- //
 
 // ------------------ End Document ------------------ //
     });

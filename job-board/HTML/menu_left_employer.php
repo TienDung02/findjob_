@@ -5,7 +5,7 @@ $file_name = end($file_name);
 ?>
 <aside class="my_profile_menu_left">
     <div class="menu_left">
-        <ul class="nav-link">
+        <ul class="nav-link menu_profile">
             <h4>Main</h4>
             <li class="<?php if ($file_name == ''){ echo 'active';} ?>">
                 <a href="">Messenger &nbsp; <span>2</span></a>

@@ -53,4 +53,10 @@ function isEmployer()
     return ($_SESSION['login']['role'] == 2);
 }
 
+function isAdmin()
+{
+    return ($_SESSION['login']['role'] == 3);
+}
+
+
 ?>

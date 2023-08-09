@@ -2,7 +2,11 @@
 <?php require_once('../../connection.php') ?>
 <?php require_once('../../function.php') ?>
 <?php require_once('../admin_head.php') ?>
-
+<?php
+if (!isAdmin()){
+    header("location:/index.php");
+}
+?>
 <body>
 
     <div id="admin_wrapper">
@@ -14,7 +18,7 @@
             <div class="contain">
                 <section>
                     <div class="title-table">
-                        <h3>Company</h3>
+                        <h3>Categories</h3>
                     </div>
                     <div class="section-item-right">
                         <form onsubmit="event.preventDefault();" role="search" class="form-search-admin">
@@ -35,11 +39,6 @@
                     $tong = $tong[0]['tong_category'];
                     $page = 1;
                     $limit = 5;
-                    //    $_POST['limit-category'];
-                    // if (isset($_POST['limit-category'])) {
-                    //     $limit = $_POST['limit-category'];
-                    // }
-                    
                     $tong = ceil($tong / $limit);
 
                     if (isset($_GET['page'])) {

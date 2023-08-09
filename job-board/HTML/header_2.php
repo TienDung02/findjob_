@@ -11,8 +11,8 @@ if ($_SESSION['login']['role'] == 1) {
     $type_user = 'candidate';
 }
 $sql_select = "select * from `$type_user` where `id_user` = '" . $_SESSION['login']['id_user'] . "' ";
-//echo $sql_select;die;
 $data_user = callsql($sql_select);
+//print_r($data_user);die;
 if (empty($data_user)) {
     $data_null = 0;
 } else {
@@ -44,7 +44,7 @@ if (empty($data_user)) {
                         </ul>
                     </li>
                     <?php
-                    if (isCandidate()){
+                    if (isCandidate() || isAdmin()){
                         ?>
                         <li><a href="browse-jobs.php">Browse Jobs</a></li>
                         <li><a href="browse-categories.php">Browse Categories</a></li>
@@ -55,7 +55,7 @@ if (empty($data_user)) {
                     }
                     ?>
                     <?php
-                    if (isEmployer()){
+                    if (isEmployer() || isAdmin()){
                         ?>
                         <li><a href="add-job.php">Add Job</a></li>
                         <li><a href="manage-jobs.php">Manage Jobs</a></li>

@@ -9,13 +9,12 @@ if (isCandidate()) {
 $updateday = date('Y-m-d');
 
 $avatar = '';
-//$folder = "./img_temp/" . $avatar;
 if (isset($_FILES["avatar"]["name"])) {
-    $avatar = $_FILES['avatar']["name"];
+    $target_dir = "img_temp/";
+    $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
+    move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
+    $avatar = 1;
 }
-$target_dir = "img_temp/";
-$target_file = $target_dir . basename($_FILES["avatar"]["name"]);
-move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
 
 $first_name = $_POST['first_name'];
 $last_name = $_POST['last_name'];
@@ -23,6 +22,7 @@ $tel = $_POST['tel'];
 $desc = $_POST['desc'];
 
 $sql_update_profile = "update `$type_user` set avatar = '$target_file', first_name = '$first_name', last_name = '$last_name', tel = '$tel', about = '$desc', update_day = '$updateday'  where id_user = '" . $_SESSION['login']['id_user'] . "' ";
+
 if ($connect->query($sql_update_profile) === TRUE) {
     $_SESSION['insert_job'] = 1;
     header("location:my_profile.php");

@@ -16,8 +16,13 @@
 ================================================= -->
 
 <div class="d-flex">
-    <?php require_once('menu_left_candidate.php') ?>
-
+    <?php
+    if (isEmployer()) {
+        require_once('menu_left_employer.php');
+    } else {
+        require_once('menu_left_candidate.php');
+    }
+    ?>
     <div class="contain" style="margin: auto; width: calc(100% - 260px);background-color: #f7f7f7">
 
         <div class="form" style="width: 80%; margin: 50px auto 0 auto">
@@ -25,7 +30,8 @@
             <hr>
         </div>
 
-        <form class="form_add_company" method="post" enctype="multipart/form-data" action="edit_profile_process.php" style="width: 80%">
+        <form class="form_add_company" method="post" enctype="multipart/form-data" action="edit_profile_process.php"
+              style="width: 80%">
 
             <div class="form w-100" style="background-color: #f5f5f5bf;padding: 0px 54px;">
                 <h3>Profile Details</h3>
@@ -42,13 +48,16 @@
                                 <a class="w-100 h-100" href="#" title="Browse">
                                 </a>
                                 <input id="fileInput2" name="avatar" class="fileInput w-100 h-100"
-                                       title="Choose file to upload"
+                                       title="Choose file to upload" value="<?php if ($data_null != 0 && $data_user['avatar'] != '') {
+                                    echo $data_user['avatar'];
+                                } else {
+                                    echo 'images/user.png';
+                                }
+                                ?>"
                                        type="file">
                             </div>
                         </div>
-                        <img class="border image-preview" style="max-width: 300px; height: 160px;" src="
-                        <?php
-                        if ($data_null != 0 && $data_user['avatar'] != '') {
+                        <img class="border image-preview" style="max-width: 300px; height: 160px;" src="<?php if ($data_null != 0 && $data_user['avatar'] != '') {
                             echo $data_user['avatar'];
                         } else {
                             echo 'images/user.png';
@@ -60,12 +69,18 @@
                     <div class="" style="width: 70%">
                         <div class="form w-100">
                             <h5>First Name</h5>
-                            <input class="search-field" type="text" name="first_name" placeholder="<?php if ($data_null != 0) { echo $data_user['first_name']; } ?>" value=""
+                            <input class="search-field" type="text" name="first_name" placeholder=""
+                                   value="<?php if ($data_null != 0) {
+                                       echo $data_user['first_name'];
+                                   } ?>"
                                    required/>
                         </div>
                         <div class="form w-100">
                             <h5>Last Name</h5>
-                            <input class="search-field" type="text" name="last_name" placeholder="" value="<?php if ($data_null != 0) { echo $data_user['last_name']; } ?>"
+                            <input class="search-field" type="text" name="last_name" placeholder=""
+                                   value="<?php if ($data_null != 0) {
+                                       echo $data_user['last_name'];
+                                   } ?>"
                                    required/>
                         </div>
                     </div>
@@ -82,8 +97,6 @@
                     <h5>About me</h5>
                     <textarea name="desc"><?php if ($data_null != 0) { echo $data_user['about']; } ?></textarea>
                 </div>
-
-
                 <div class="form">
                     <input type="submit" value="Save Changes">
                 </div>
