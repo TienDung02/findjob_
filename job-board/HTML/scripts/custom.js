@@ -528,14 +528,27 @@
         var year = new Date().getFullYear();
         var $select_year = $('#select_year').empty();
 
-        for (var i = 0; i < 99; i++) {
+        for (var i = 0; i < 29; i++) {
             $('<option>')
-                .val(year - i)     // set the value
-                .text(year - i)    // set the text in in the <option>
+                .val(year + i)     // set the value
+                .text(year + i)    // set the text in in the <option>
                 .appendTo($select_year);
         }
 
         // ----------------------- End Input Date -------------------------- //
+
+
+        //------------------------------- Hidden and Show Menu Left Admin -------------------------------------//
+        $(".btn_hidden_menu").click(function () {
+            console.log('aadasd');
+            $('.menu_01').addClass('d-none').removeClass('d-block');
+            $('.menu_02').addClass('d-block').removeClass('d-none');
+        });
+        $(".btn_Show_menu").click(function () {
+            console.log('aadasd');
+            $('.menu_02').addClass('d-none').removeClass('d-block');
+            $('.menu_01').addClass('d-block').removeClass('d-none');
+        });
 
 // ------------------ End Document ------------------ //
     });

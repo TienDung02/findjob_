@@ -17,16 +17,12 @@
 
 <div class="d-flex">
     <?php
-    if (isEmployer()){
         require_once ('menu_left_employer.php');
-    }else{
-        require_once ('menu_left_candidate.php');
-    }
     ?>
 
     <div class="contain" style="margin: auto; width: calc(100% - 260px);background-color: #f7f7f7">
 
-        <div class="form" style="width: 80%; margin: 50px auto 0 auto">
+        <div class="form" style="width: 90%; margin: 50px auto 0 auto">
             <h3>Add Company</h3>
             <hr>
         </div>

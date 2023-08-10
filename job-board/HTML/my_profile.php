@@ -2,10 +2,7 @@
 <?php require_once('connection.php') ?>
 <?php require_once('function.php') ?>
 <?php require_once('head.php') ?>
-<?php
 
-
-?>
 <!-- Header
 ================================================== -->
 <?php require_once('header_2.php') ?>
@@ -47,14 +44,13 @@
                             <div class="inputFileHolder h-100">
                                 <a class="w-100 h-100" href="#" title="Browse">
                                 </a>
-                                <input id="fileInput2" name="avatar" class="fileInput w-100 h-100"
-                                       title="Choose file to upload" value="<?php if ($data_null != 0 && $data_user['avatar'] != '') {
+                                <input id="fileInput2" name="avatar" class="fileInput w-100 h-100" title="Choose file to upload" value=""   type="file">
+                                <input name="avatar_old" value="<?php if ($data_null != 0 && $data_user['avatar'] != '') {
                                     echo $data_user['avatar'];
                                 } else {
                                     echo 'images/user.png';
                                 }
-                                ?>"
-                                       type="file">
+                                ?>"   type="hidden">
                             </div>
                         </div>
                         <img class="border image-preview" style="max-width: 300px; height: 160px;" src="<?php if ($data_null != 0 && $data_user['avatar'] != '') {

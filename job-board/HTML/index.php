@@ -1,17 +1,18 @@
 <?php session_start() ?>
 <?php require_once('connection.php') ?>
 <?php require_once('function.php') ?>
-
-
 <?php require_once('head.php') ?>
 
 
 <!-- Header
 ================================================== -->
 <?php
-
+//print_r($_SESSION);die;
 if (checkLogged() == 1) {
     require_once('header_2.php');
+    $sql_select_job = "SELECT job.*, company.* FROM job JOIN employer ON job.id_employer = employer.id_employer JOIN company ON company.id_employer = employer.id_employer GROUP BY id";
+    $jobs = callsql($sql_select_job);
+
 } else {
     require_once('header.php');
 }
@@ -59,77 +60,26 @@ if (checkLogged() == 1) {
         <div class="padding-right">
             <h3 class="margin-bottom-25">Recent Jobs</h3>
             <ul class="job-list">
-
-                <li class="highlighted"><a href="job-page.php">
-                        <img src="images/job-list-logo-01.png" alt="">
-                        <div class="job-list-content">
-                            <h4>Marketing Coordinator - SEO / SEM Experience <span class="full-time">Full-Time</span>
-                            </h4>
-                            <div class="job-icons">
-                                <span><i class="fa fa-briefcase"></i> King</span>
-                                <span><i class="fa fa-map-marker"></i> Sydney</span>
-                                <span><i class="fa fa-money"></i> $100 / hour</span>
+                <?php
+                foreach ($jobs as $job) {
+                    ?>
+                    <li class="highlighted">
+                        <a href="job-page.php" class="d-flex align-items-center">
+                            <img class="p-0 m-0 float-none" src="<?php echo $job['company_logo']; ?>" style="width: 100px; height: 100px" alt="">
+                            <div class="job-list-content ms-5">
+                                <h4><?php echo $job['title'] ?><span
+                                            class="ms-3 full-time "><?php echo $job['job_type']; ?></span>
+                                </h4>
+                                <div class="job-icons ">
+                                    <span><i class="fa fa-briefcase"></i><?php echo $job['company_name']; ?></span>
+                                    <span><i class="fa fa-map-marker"></i><?php echo $job['location']; ?></span>
+                                    <span><i class="fa fa-money"></i><?php echo '(' . $job['minimum_salary'] . '$ - ' . $job['maximum_salary'] . '$)/month' . ' or (' . $job['minimum_rate'] . '$ - ' . $job['maximum_rate'] . '$)/hour' ?></span>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                    <div class="clearfix"></div>
-                </li>
-
-                <li><a href="job-page.php">
-                        <img src="images/job-list-logo-02.png" alt="">
-                        <div class="job-list-content">
-                            <h4>Core PHP Developer for Site Maintenance <span class="part-time">Part-Time</span></h4>
-                            <div class="job-icons">
-                                <span><i class="fa fa-briefcase"></i> Cubico</span>
-                                <span><i class="fa fa-map-marker"></i> London</span>
-                                <span><i class="fa fa-money"></i> $50 / hour</span>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="clearfix"></div>
-                </li>
-
-                <li><a href="job-page.php">
-                        <img src="images/job-list-logo-03.png" alt="">
-                        <div class="job-list-content">
-                            <h4>Restaurant Team Member - Crew <span class="full-time">Full-Time</span></h4>
-                            <div class="job-icons">
-                                <span><i class="fa fa-briefcase"></i> King</span>
-                                <span><i class="fa fa-map-marker"></i> Sydney</span>
-                                <span><i class="fa fa-money"></i> $15 / hour</span>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="clearfix"></div>
-                </li>
-
-                <li><a href="job-page.php">
-                        <img src="images/job-list-logo-04.png" alt="">
-                        <div class="job-list-content">
-                            <h4>Power Systems User Experience Designer <span class="internship">Internship</span></h4>
-                            <div class="job-icons">
-                                <span><i class="fa fa-briefcase"></i> Hexagon</span>
-                                <span><i class="fa fa-map-marker"></i> London</span>
-                                <span><i class="fa fa-money"></i> $75 / hour</span>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="clearfix"></div>
-                </li>
-
-                <li><a href="job-page.php">
-                        <img src="images/job-list-logo-05.png" alt="">
-                        <div class="job-list-content">
-                            <h4>iPhone / Android Music App Development <span class="temporary">Temporary</span></h4>
-                            <div class="job-icons">
-                                <span><i class="fa fa-briefcase"></i> Mates</span>
-                                <span><i class="fa fa-map-marker"></i> New York</span>
-                                <span><i class="fa fa-money"></i> $115 / hour</span>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="clearfix"></div>
-                </li>
+                        </a>
+                        <div class="clearfix"></div>
+                    </li>
+                <?php } ?>
             </ul>
 
             <a href="browse-jobs.php" class="button centered"><i class="fa fa-plus-circle"></i> Show More Jobs</a>

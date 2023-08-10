@@ -40,83 +40,31 @@
 			<input type="text" placeholder="job title, keywords or company name" value=""/>
 			<div class="clearfix"></div>
 		</form>
-
+        <?php
+        $sql_select_job = "SELECT job.*, company.* FROM job JOIN employer ON job.id_employer = employer.id_employer JOIN company ON company.id_employer = employer.id_employer GROUP BY id";
+        $jobs = callsql($sql_select_job);
+        ?>
 		<ul class="job-list full">
-
-			<li><a href="job-page.php">
-				<img src="images/job-list-logo-01.png" alt="">
-				<div class="job-list-content">
-					<h4>Marketing Coordinator - SEO / SEM Experience <span class="full-time">Full-Time</span></h4>
-					<div class="job-icons">
-						<span><i class="fa fa-briefcase"></i> King</span>
-						<span><i class="fa fa-map-marker"></i> Sydney</span>
-						<span><i class="fa fa-money"></i> $100 / hour</span>
-					</div>
-					<p>The SEO/SEM Specialist will work with industry leaders and top retailers to define and deliver best practices through innovative SEO methodologies.</p>
-				</div>
-				</a>
-				<div class="clearfix"></div>
-			</li>
-
-			<li><a href="job-page.php">
-				<img src="images/job-list-logo-02.png" alt="">
-				<div class="job-list-content">
-					<h4>Core PHP Developer for Site Maintenance <span class="part-time">Part-Time</span></h4>
-					<div class="job-icons">
-						<span><i class="fa fa-briefcase"></i> Cubico</span>
-						<span><i class="fa fa-map-marker"></i> London</span>
-						<span><i class="fa fa-money"></i> $50 / hour</span>
-					</div>
-					<p>Vivamus eleifend metus elit. Aenean facilisis placerat faucibus. Praesent commodo at mi nec imperdiet. Etiam at libero nec nunc iaculis ullamcorper.</p>
-				</div>
-				</a>
-				<div class="clearfix"></div>
-			</li>
-
-			<li><a href="job-page-alt.php">
-				<img src="images/job-list-logo-03.png" alt="">
-				<div class="job-list-content">
-					<h4>Restaurant Team Member - Crew <span class="full-time">Full-Time</span></h4>
-					<div class="job-icons">
-						<span><i class="fa fa-briefcase"></i> King</span>
-						<span><i class="fa fa-map-marker"></i> Sydney</span>
-						<span><i class="fa fa-money"></i> $15 / hour</span>
-					</div>
-					<p>Duis eu sem erat. Aliquam vestibulum justo at quam facilisis, sit amet condimentum dui laoreet. Nunc feugiat ante quis pulvinar ornare. In tempus lorem ipsum.</p>
-				</div>
-				</a>
-				<div class="clearfix"></div>
-			</li>
-
-			<li><a href="job-page.php">
-				<img src="images/job-list-logo-04.png" alt="">
-				<div class="job-list-content">
-					<h4>Power Systems User Experience Designer  <span class="internship">Internship</span></h4>
-					<div class="job-icons">
-						<span><i class="fa fa-briefcase"></i> Hexagon</span>
-						<span><i class="fa fa-map-marker"></i> London</span>
-						<span><i class="fa fa-money"></i> $75 / hour</span>
-					</div>
-					<p>Praesent eu imperdiet quam. Fusce posuere venenatis lorem vel lacinia. Integer orci magna, accumsan nec velit quis, porttitor pulvinar nulla. Nullam viverra risus massa.</p>
-				</div>
-				</a>
-				<div class="clearfix"></div>
-			</li>
-
-			<li><a href="job-page-alt.php">
-				<img src="images/job-list-logo-05.png" alt="">
-				<div class="job-list-content">
-					<h4>iPhone / Android Music App Development <span class="temporary">Temporary</span></h4>
-					<div class="job-icons">
-						<span><i class="fa fa-briefcase"></i> Mates</span>
-						<span><i class="fa fa-map-marker"></i> New York</span>
-						<span><i class="fa fa-money"></i> $115 / hour</span>
-					</div>
-					<p>Sodales mollis metus eget egestas. Duis sit amet sem pretium, facilisis libero ut, lobortis arcu. Cras ipsum libero, suscipit ut nisl vitae, commodo pretium mauris.</p>
-				</div>
-				</a>
-				<div class="clearfix"></div>
-			</li>
+            <?php
+            foreach ($jobs as $job){
+            ?>
+                <li class="highlighted">
+                    <a href="job-page.php" class="d-flex align-items-center">
+                        <img class="p-0 m-0 float-none" src="<?php echo $job['company_logo']; ?>" style="width: 100px; height: 100px" alt="">
+                        <div class="job-list-content ms-5">
+                            <h4><?php echo $job['title'] ?><span
+                                        class="ms-3 full-time "><?php echo $job['job_type']; ?></span>
+                            </h4>
+                            <div class="job-icons ">
+                                <span><i class="fa fa-briefcase"></i><?php echo $job['company_name']; ?></span>
+                                <span><i class="fa fa-map-marker"></i><?php echo $job['location']; ?></span>
+                                <span><i class="fa fa-money"></i><?php echo '(' . $job['minimum_salary'] . '$ - ' . $job['maximum_salary'] . '$)/month' . ' or (' . $job['minimum_rate'] . '$ - ' . $job['maximum_rate'] . '$)/hour' ?></span>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="clearfix"></div>
+                </li>
+            <?php } ?>
 		</ul>
 		<div class="clearfix"></div>
 

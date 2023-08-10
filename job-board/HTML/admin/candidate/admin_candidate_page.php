@@ -4,7 +4,7 @@
 <?php require_once('../admin_head.php') ?>
 <?php
 if (!isAdmin()){
-    header("location:index.php.php");
+    header("location:/index.php");
 }
 ?>
 <body>
@@ -12,20 +12,27 @@ if (!isAdmin()){
 <div id="admin_wrapper">
     <?php require_once('../admin_header.php') ?>
     <main>
-        <?php require_once('../admin_menu_left.php');
-
-        ?>
+<!--        --><?php //require_once('../admin_menu_left.php');?>
+        <?php require_once('../admin_menu_left.php');?>
         <div class="contain">
             <section>
                 <div class="title-table">
-                    <h3>Categories</h3>
+                    <h3>Candidate</h3>
+                </div>
+                <div class="section-item-right">
+                    <form onsubmit="event.preventDefault();" role="search" class="form-search-admin">
+                        <label for="search" class="label-search">Search for stuff</label>
+                        <input id="search" type="search" class="input-search" placeholder="Search..." autofocus
+                               required />
+                        <button class="button-search" type="submit">Go</button>
+                    </form>
                 </div>
             </section>
             <div class="table-main">
                 <?php
-                $sql_select_all = "SELECT count(*) as tong_category FROM company";
+                $sql_select_all = "SELECT count(*) as tong_candidate FROM candidate";
                 $tong = callsql($sql_select_all);
-                $tong = $tong[0]['tong_category'];
+                $tong = $tong[0]['tong_candidate'];
                 $page = 1;
                 $limit = 5;
                 $tong = ceil($tong / $limit);
@@ -37,22 +44,23 @@ if (!isAdmin()){
                     }
                 }
                 $start = ($page - 1) * $limit;
-                $sql_select_all = "SELECT company.*,employer.* FROM company JOIN employer ON company.id_employer=employer.id_employer limit $start,$limit";
-                $show_companies = callsql($sql_select_all);
+                $sql_select_all = "SELECT * from candidate  limit $start,$limit";
+                // echo $sql_select_all;die;
+                $show_candidate = callsql($sql_select_all);
                 ?>
                 <table class="table table-hover">
                     <colgroup>
                         <col width="200">
                         <col width="400">
                         <col>
-                        <col width="200">
+                        <col>
                         <col width="200">
                     </colgroup>
                     <thead>
                     <tr>
                         <th>STT</th>
-                        <th>Employer</th>
-                        <th>Company Name</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
                         <th>Active</th>
                         <th>Action</th>
                     </tr>
@@ -60,29 +68,29 @@ if (!isAdmin()){
                     <tbody>
                     <?php $n = 1;
                     $x = 1;
-                    if (count($show_companies) < 2) {
+                    if (count($show_candidate) < 2) {
                         $x = 0;
                     }
-                    foreach ($show_companies as $show_company) {
+                    foreach ($show_candidate as $candidate) {
                         ?>
                         <tr>
                             <td>
                                 <?php echo ($page - 1) * $limit + $n ?>
                             </td>
                             <td>
-                                <?php echo $show_company['first_name'] . ' ' . $show_company['last_name']; ?>
+                                <?php echo $candidate['first_name'] . ' ' . $candidate['last_name']; ?>
                             </td>
                             <td>
-                                <?php echo $show_company['company_name'] ?>
+                                <?php echo $candidate['email'] ?>
                             </td>
                             <td>
-                                <input class="toggle_switch" <?php if ($show_company['active'] == 1){echo 'checked';} ?> " type="checkbox">
+                                <input class="toggle_switch" <?php if ($candidate['active'] == 1){echo 'checked';} ?> " type="checkbox">
                             </td>
                             <td>
                                 <a
-                                        href="<?php echo "admin-view-company.php?id_company={$show_company['id_company']}"; ?>"><i
+                                        href="<?php  ?>"><i
                                             class="bi bi-pencil-square"></i></a>
-                                <a href="<?php ?>"><i class="bi bi-eye"></i></a>
+                                <a href="<?php  ?>"><i class="delete bi bi-x-circle"></i></a>
                             </td>
                         </tr>
                         <?php $n++;
@@ -124,8 +132,7 @@ if (!isAdmin()){
 </div>
 <?php require_once('../admin_script.php') ?>
 <?php
-print_r($_SESSION);
-if (isset($_SESSION['update_company_active']) && $_SESSION['update_company_active'] == 1) {
+if (isset($_SESSION['category-status']) && $_SESSION['category-status'] == 1) {
     ?>
     <script>
         $(document).ready(function executeExample() {
@@ -142,12 +149,12 @@ if (isset($_SESSION['update_company_active']) && $_SESSION['update_company_activ
             })
             Toast.fire({
                 icon: 'success',
-                title: 'Update Success'
+                title: 'Thêm thành công'
             })
         });
     </script>
 <?php
-} elseif (isset($_SESSION['update_company_active']) && $_SESSION['update_company_active'] == 0){
+} elseif (isset($_SESSION['category-status']) && $_SESSION['category-status'] == 2) {
 ?>
     <script>
         $(document).ready(function executeExample() {
@@ -163,14 +170,28 @@ if (isset($_SESSION['update_company_active']) && $_SESSION['update_company_activ
                 }
             })
             Toast.fire({
-                icon: 'error',
-                title: 'System Error'
+                icon: 'success',
+                title: 'Cập nhật thành công'
             })
         });
     </script>
     <?php
 }
-unset($_SESSION['update_company_active']);
+unset($_SESSION['category-status']);
+
 ?>
+<script>
+    // $(".btn_hidden_menu").click(function(){
+    //     console.log('aadasd');
+    //     $('.menu_01').addClass('d-none').removeClass('d-block');
+    //     $('.menu_02').addClass('d-block').removeClass('d-none');
+    // });
+    // $(".btn_Show_menu").click(function(){
+    //     console.log('aadasd');
+    //     $('.menu_02').addClass('d-none').removeClass('d-block');
+    //     $('.menu_01').addClass('d-block').removeClass('d-none');
+    // });
+</script>
 </body>
+
 </html>

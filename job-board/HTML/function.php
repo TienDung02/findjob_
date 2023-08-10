@@ -35,7 +35,7 @@ function custom_price_echo($numbers)
 
 
 function checkLogged(){
-        if (isset($_SESSION['logged']) && $_SESSION['logged'] != 0){
+        if (isset($_SESSION['login_success']) && $_SESSION['login_success'] != 0){
             return 1;
         }else{
             return 0;

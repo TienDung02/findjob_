@@ -4,13 +4,29 @@
 <?php
     $postday = date('Y-m-d');
     $updateday = date('Y-m-d');
-    $tags_input = $_POST['tags_input'];
+
+
+    $tags_input = '';
+    if (isset($_POST['tags_input'])){
+        $tags_input = $_POST['tags_input'];
+
+    }
+    $id_employer = $_POST['id_employer'];
     $location = $_POST['location'];
     $title = $_POST['job_title'];
     $type = $_POST['job_type'];
     $categories = $_POST['category'];
     $desc = $_POST['description'];
-    $closing_date = $_POST['closing_date'];
+
+    $minimum_rate = $_POST['minimum_rate'];
+    $maximum_rate = $_POST['maximum_rate'];
+    $minimum_salary = $_POST['minimum_salary'];
+    $maximum_salary = $_POST['maximum_salary'];
+
+    $closing_day = $_POST['closing_day'];
+    $closing_month = $_POST['closing_month'];
+    $closing_year = $_POST['closing_year'];
+    $closing_date = $closing_day . '-' . $closing_month . '-' . $closing_year;
 
     $job_categories = '';
     $job_tags = '';
@@ -32,8 +48,8 @@
         }
     }
 
-    $sql_insert_job = "INSERT INTO job (id , id_company, title, category, job_type, location, job_tag, description, closing_day, required, create_day, update_day) 
-                        VALUES ('', '1', '$title', '$job_categories', '$type', '$location', '$job_tags', '$desc', '$closing_date', 1, '$postday', '$updateday')";
+    $sql_insert_job = "INSERT INTO job (`id`, `id_employer`, `title`, `category`, `job_type`, `location`, `job_tag`, `description`, `minimum_rate`, `maximum_rate`, `minimum_salary`, `maximum_salary`, `closing_day`, `active`, `create_day`, `update_day`) 
+                        VALUES ('', '$id_employer', '$title', '$job_categories', '$type', '$location', '$job_tags', '$desc', $minimum_rate, $maximum_rate, $minimum_salary, $maximum_salary, '$closing_date', 0, '$postday', '$updateday')";
 //    echo $sql_insert_job;die;
     if ($connect->query($sql_insert_job) === TRUE) {
         $_SESSION['insert_job'] = 1;

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/css/bootstrap-tagsinput.css" />
     <link rel="stylesheet" href="css/style.css?v=<?php echo time() ?>">
 
-    <link rel="stylesheet" href="css/colors/green.css" id="colors">
+    <link rel="stylesheet" href="css/colors/blue.css" id="colors">
 
 
     <!--[if lt IE 9]>

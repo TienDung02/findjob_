@@ -8,12 +8,12 @@ if (isCandidate()) {
 }
 $updateday = date('Y-m-d');
 
-$avatar = '';
-if (isset($_FILES["avatar"]["name"])) {
+if (isset($_FILES["avatar"]["name"]) && $_FILES['avatar']['name'] != '') {
     $target_dir = "img_temp/";
     $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
     move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file);
-    $avatar = 1;
+}else{
+    $target_file = $_POST['avatar_old'];
 }
 
 $first_name = $_POST['first_name'];

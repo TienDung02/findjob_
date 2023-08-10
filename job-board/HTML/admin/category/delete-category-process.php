@@ -1,4 +1,4 @@
-
+<?php session_start() ?>
 <?php require_once('../../connection.php') ?>
 <?php
 $page = $_GET['page'];

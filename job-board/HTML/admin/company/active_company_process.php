@@ -16,10 +16,10 @@ $sql_active_company = " update `company` set `active` = $active where `id_compan
 
 if ($connect->query($sql_active_company) === TRUE) {
     $_SESSION['update_company_active'] = 1;
-    header("location:admin-company-page.php");
+    header("location:admin_company_page.php");
 } else {
     $_SESSION['update_company_active'] = 0;
-    header("location:admin-company-page.php");
+    header("location:admin_company_page.php");
 }
 
 ?>
