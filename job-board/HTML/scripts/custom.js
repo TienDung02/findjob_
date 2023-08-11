@@ -539,18 +539,80 @@
 
 
         //------------------------------- Hidden and Show Menu Left Admin -------------------------------------//
-        $(".btn_hidden_menu").click(function () {
-            console.log('aadasd');
-            $('.menu_01').addClass('d-none').removeClass('d-block');
-            $('.menu_02').addClass('d-block').removeClass('d-none');
+        // $('.menu_02').hide();
+        $(".hide_menu").click(function () {
+            $(".menu_01").addClass('hide_menu_');
+            $(".menu_02").removeClass('hide_menu_');
         });
         $(".btn_Show_menu").click(function () {
-            console.log('aadasd');
-            $('.menu_02').addClass('d-none').removeClass('d-block');
-            $('.menu_01').addClass('d-block').removeClass('d-none');
+            $(".menu_02").addClass('hide_menu_');
+            $(".menu_01").removeClass('hide_menu_');
         });
+
+        // ------------------------------------ Summernote ---------------------------------------------------//
+
+
+
+        // -----------------------------------------------------------------------------//
+
+        $('.alert_delete').on('click', function () {
+
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = $(this).attr('data-target');
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'Your imaginary file is safe :)',
+                        'error'
+                    )
+                }
+            })
+        })
+
+        // const f = document.getElementById("hide_menu");
+        // const v = document.getElementsByClassName("menu_01");
+        // document.addEventListener(
+        //     "click",
+        //     (ev) => {
+        //         console.log('aaaaaaaaaaaaaaaaaaaaaaabc');
+        //         v.style.transform = `translateX(${ev.clientX - 280}px)`;
+        //     },
+        //     false,
+        // );
+
+
+
+
+
+
+
+
+
 
 // ------------------ End Document ------------------ //
     });
 
 })(this.jQuery);
+$(document).ready(function() {
+    $('#summernote').summernote();
+});

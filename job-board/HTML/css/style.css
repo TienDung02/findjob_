@@ -1651,8 +1651,16 @@ img.mfp-img {
 	height: 32px;
 	padding: 5px 10px 5px 5px;
 	/*margin: auto;*/
-	margin-top: 1rem;
+	margin-top: 0.5rem;
 	margin-left: 0 !important;
+}
+
+.bootstrap-tagsinput .tag [data-role="remove"]{
+}
+
+.bootstrap-tagsinput .tag [data-role="remove"]:hover{
+	font-size: 2rem;
+	padding: 0 8px;
 }
 
 .notification p { margin: 0; }
@@ -5428,7 +5436,7 @@ div.sceditor-group:first-child {
 	color: #808080;
 }
 
-textarea.WYSIWYG { min-height: 300px; }
+textarea.WYSIWYG { min-height: 200px; }
 
 .submit-page .divider {
 	border-bottom: 1px solid #e0e0e0;
@@ -6575,7 +6583,7 @@ label.label-search {
 	height: 100vh;
 	position: fixed;
 	top: 0;
-	transform: translateY(90px) !important;
+	padding-top: 90px;
 	background-color: #fff;
 	box-shadow: 2px 0 8px rgba(0, 0, 0, 0.16);
 }
@@ -6606,7 +6614,7 @@ label.label-search {
 #admin_wrapper main aside .menu_left ul li a {
 	width: 100%;
 	height: 100%;
-	color: #6b727a;
+	color: #36393c;
 	font-size: 1rem;
 	display: flex;
 	align-items: center;
@@ -7021,27 +7029,54 @@ input.toggle_switch[type="checkbox"]:checked {
 	transform: scaleX(0.7);
 }
 
+/*----------------------------- Check Box Fail --------------------------------------*/
+
+.label_check_fail{
+	/*display: inline-block;*/
+	background-color: #f00;
+	border: 1px solid #f00;
+	width: 13px;
+	height: 13px;
+	margin: auto;
+	position: relative;
+	border-radius: 2px;
+}
+
+.label_check_fail i:before{
+	position: absolute;
+	top: 0;
+	font-size: 11px;
+	font-weight: 500;
+	color: #fff;
+	left: 0;
+}
+
+
+.note-toolbar {
+	background-color: #fff; /* Replace with your desired color */
+}
+
+/* Change text color of toolbar icons */
+.note-toolbar button {
+	color: #2db2ea; /* Replace with your desired color */
+}
 
 
 
+.menu_02{
+	transition: transform 2s;
+	animation-duration: 2s;
 
+}
 
+.menu_01{
+	transition: transform 2s;
+	animation-duration: 2s;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.hide_menu_{
+	transform: translateX(-100%) !important;
+}
 
 
 

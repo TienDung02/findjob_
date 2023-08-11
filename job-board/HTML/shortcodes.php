@@ -1,9 +1,18 @@
-<?php require_once ('head.php')?>
+<?php session_start() ?>
+<?php require_once ('connection.php')?>
+<?php require_once ('function.php')?>
+<?php require_once('head.php') ?>
 
 
 <!-- Header
 ================================================== -->
-<?php require_once ('header.php')?>
+<?php
+if (checkLogged() == 1) {
+    require_once('header_2.php');
+} else {
+    require_once('header.php');
+}
+?>
 <div class="clearfix"></div>
 
 

@@ -5,6 +5,9 @@
 $postday = date('Y-m-d');
 $updateday = date('Y-m-d');
 
+//print_r($_POST);die;
+
+
 $id = $_GET['id'];
 
 $tags_input = '';
@@ -18,6 +21,7 @@ $title = $_POST['job_title'];
 $type = $_POST['job_type'];
 $categories = $_POST['category'];
 $desc = $_POST['description'];
+$job_requirements = $_POST['job_requirements'];
 
 $minimum_rate = $_POST['minimum_rate'];
 $maximum_rate = $_POST['maximum_rate'];
@@ -50,16 +54,16 @@ foreach ($tags_input as $tag){
 }
 
 $sql_update_job = "UPDATE `job` SET `title`='$title',`category`='$job_categories',`job_type`='$type',`location`='$location',`job_tag`='$$job_tags',
-                 `description`='$desc',`minimum_rate`='$minimum_rate',`maximum_rate`='$maximum_rate',`minimum_salary`='$minimum_salary',
+                 `description`='$desc', `job_requirements`='$job_requirements',`minimum_rate`='$minimum_rate',`maximum_rate`='$maximum_rate',`minimum_salary`='$minimum_salary',
                  `maximum_salary`='$maximum_salary',`closing_day`='$closing_date',`update_day`='$updateday' WHERE `id` = $id";
-    echo $sql_update_job;die;
+//    echo $sql_update_job;die;
 if ($connect->query($sql_update_job) === TRUE) {
-    $_SESSION['insert_job'] = 1;
-    header("location:add-job.php");
+    $_SESSION['update_job'] = 1;
+    header("location:manage-jobs.php");
 } else {
-    $_SESSION['insert_job'] = 0;
+    $_SESSION['update_job'] = 0;
     echo "Lỗi: " . $sql_update_job . "<br>" . $conn->error;
-    header("location:add-job.php");
+    header("location:manage-jobs.php");
 }
 
 ?>

@@ -39,8 +39,7 @@ if (checkLogged() == 1) {
             $job = $job[0];
         }
         ?>
-        <form method="post" class="m-auto mb-5 rounded-4 form_add_company" action="
-        <?php
+        <form method="post" class="m-auto mb-5 rounded-4 form_add_company" action="<?php
         if ($id != '' && $id != '0') {
             echo 'edit_job_process.php?id='.$id;
         } else {
@@ -117,7 +116,7 @@ if (checkLogged() == 1) {
                                         echo 'selected';
                                     }
 //                                }
-                            } ?> value="<?php echo $category['name'] ?>"> <?php echo $category['name'] ?> </option>
+                            } ?> value="<?php echo $category['id_category'] ?>"> <?php echo $category['name'] ?> </option>
                         <?php } ?>
                     </select>
                 </div>
@@ -131,6 +130,7 @@ if (checkLogged() == 1) {
 
                         $tags = $job['job_tag'];
                         $tags = explode(',', $tags);
+                        print_r($tags);
                         foreach ($tags as $tag) {
                             ?>
                             <option value="<?php echo $tag ?>"> <?php echo $tag ?> </option>
@@ -143,9 +143,16 @@ if (checkLogged() == 1) {
             <!-- Description -->
             <div class="form">
                 <h5>Description</h5>
-                <textarea class="WYSIWYG" cols="40" rows="3" id="summary" name="description"
+                <textarea class="WYSIWYG " cols="40" rows="3" id="summary" name="description"
                           spellcheck="true"><?php if ($id != '' && $id != '0') {
                         echo $job['description'];
+                    } ?></textarea>
+            </div>
+            <div class="form">
+                <h5>Job requirements</h5>
+                <textarea class="WYSIWYG d-none" cols="40" rows="3" id="summernote" name="job_requirements"
+                          spellcheck="true"><?php if ($id != '' && $id != '0') {
+                        echo $job['job_requirements'];
                     } ?></textarea>
             </div>
 
@@ -276,6 +283,20 @@ if (checkLogged() == 1) {
                 $(this).prop('selected',true);
             }
         });*/
+        $('#summernote').summernote({
+            placeholder: '',
+            tabsize: 2,
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['#f00']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
     });
 
 </script>

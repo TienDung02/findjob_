@@ -9,25 +9,6 @@
 ================================================== -->
 <?php require_once('header_2.php') ?>
 <div class="clearfix"></div>
-<!-- Titlebar
-================================================== -->
-<!--<div id="titlebar" class="single">-->
-<!--    <div class="container">-->
-<!---->
-<!--        <div class="sixteen columns">-->
-<!--            <h2>Manage Jobs</h2>-->
-<!--            <nav id="breadcrumbs">-->
-<!--                <ul>-->
-<!--                    <li>You are here:</li>-->
-<!--                    <li><a href="#">Home</a></li>-->
-<!--                    <li>Job Dashboard</li>-->
-<!--                </ul>-->
-<!--            </nav>-->
-<!--        </div>-->
-<!---->
-<!--    </div>-->
-<!--</div>-->
-
 
 <!-- Content
 ================================================== -->
@@ -59,9 +40,16 @@
                 ?>
                 <!-- Item #1 -->
                 <tr>
-                    <td class="title"><a href="#"><?php echo $job['title'] ?><span class="pending"><?php if ($job['active'] == 0 && $job['refuse'] != 0){ echo '(Pending Approval)'; } ?></span></a></td>
+                    <td class="title"><a href="#"><?php echo $job['title'] ?></td>
                     <td class="centered">
-                        <input  type="checkbox">
+                        <?php if ($job['active'] == 0){
+                            echo "<input class='checkbox_fail' readonly type='checkbox'>";
+                        }elseif ($job['active'] == 1 ){
+                            echo "<input class='checkbox_fail' checked readonly type='checkbox'>";
+                        }else{
+                            echo  "<div class='label_check_fail'><i class='bi bi-x-lg'></i></div>";
+                        }
+                        ?>
                     </td>
                     <td><?php echo $job['create_day']?></td>
                     <td><?php echo $job['closing_day'] ?></td>
@@ -69,7 +57,7 @@
                     <td class="action">
                         <a href="add-job.php?id=<?php echo $job['id'] ?>"><i class="fa fa-pencil"></i> Edit</a>
                         <a href="#"><i class="bi bi-eye-fill"></i> View</a>
-                        <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+                        <a href="#" class="delete alert_delete" data-target="delete_job_process.php?id=<?php echo $job['id'] ?>" ><i class="fa fa-remove"></i> Delete</a>
                     </td>
                 </tr>
                 <?php } ?>
@@ -98,11 +86,9 @@
                         <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
                     </td>
                 </tr>
-
             </table>
-
             <br>
-            <a href="#" class="button">Add Job</a>
+            <a href="add-job.php" class="button">Add Job</a>
 
         </div>
 
@@ -123,6 +109,86 @@
 <!-- Scripts
 ================================================== -->
 <?php require_once ('script_tag.php')?>
+<?php
+if (isset($_SESSION['update_job']) && $_SESSION['update_job'] == 1) {
+    ?>
+    <script>
+        $(document).ready(function executeExample() {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Update success'
+            })
+        });
+    </script>
+    <?php
+} elseif (isset($_SESSION['update_job']) && $_SESSION['update_job'] == 0) {
+    ?>
+    <script>
+        $(document).ready(function executeExample() {
+            Swal.fire({
+                icon: 'error',
+                title: 'System error',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        });
+
+    </script>
+    <?php
+}elseif (isset($_SESSION['delete_job']) && $_SESSION['delete_job'] == 1) {
+    ?>
+    <script>
+        $(document).ready(function executeExample() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Delete success',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        });
+
+    </script>
+    <?php
+}elseif (isset($_SESSION['update_job']) && $_SESSION['update_job'] == 0 || isset($_SESSION['delete_job']) && $_SESSION['delete_job'] == 0) {
+    ?>
+    <script>
+        $(document).ready(function executeExample() {
+            Swal.fire({
+                icon: 'error',
+                title: 'System error',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        });
+    </script>
+    <?php
+}
+unset($_SESSION['update_job']);
+unset($_SESSION['delete_job']);
+?>
 
 
 </body>

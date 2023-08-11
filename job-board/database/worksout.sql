@@ -154,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `categories_blog` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table worksout.categories_blog: 4 rows
+-- Dumping data for table worksout.categories_blog: 3 rows
 /*!40000 ALTER TABLE `categories_blog` DISABLE KEYS */;
 INSERT INTO `categories_blog` (`id`, `name`) VALUES
 	(1, 'News'),
@@ -254,26 +254,22 @@ CREATE TABLE IF NOT EXISTS `job` (
   `location` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `job_tag` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `description` varchar(999) COLLATE utf8mb4_general_ci NOT NULL,
+  `job_requirements` varchar(9999) COLLATE utf8mb4_general_ci NOT NULL,
   `minimum_rate` int NOT NULL,
   `maximum_rate` int NOT NULL,
   `minimum_salary` int NOT NULL,
   `maximum_salary` int NOT NULL,
   `closing_day` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `active` varchar(999) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `refuse` int NOT NULL,
   `create_day` date NOT NULL,
   `update_day` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table worksout.job: ~6 rows (approximately)
-INSERT INTO `job` (`id`, `id_employer`, `title`, `category`, `job_type`, `location`, `job_tag`, `description`, `minimum_rate`, `maximum_rate`, `minimum_salary`, `maximum_salary`, `closing_day`, `active`, `refuse`, `create_day`, `update_day`) VALUES
-	(4, 1, 'Senior Health And Nutrition Advisor', ',8,5,', '3', '2', 'html,css,php,', 'adfvsdfbsd', 0, 0, 0, 0, '', '1', 0, '2023-08-03', '2023-08-03'),
-	(5, 1, 'Social Media And Public Relation Executive', '5, ', '3', '3', 'html,css,javascript,', 'avdfvs', 0, 0, 0, 0, '2023-09-02', '1', 0, '2023-08-03', '2023-08-03'),
-	(6, 1, 'Moore & Kavinsky', 'Education Training, ', 'Full-Time', 'Hà Nội', '$$html,css,ruby,,,', 'adfvsdfvbs', 0, 0, 0, 0, '09-07-2023', '1', 0, '2023-08-03', '2023-08-10'),
-	(7, 1, 'Head Of Commercial Contracts', '7, ', '1', '1', '', '', 0, 0, 0, 0, 'Day-Month-2023', '0', 0, '2023-08-10', '2023-08-10'),
-	(8, 1, 'Telecommunication Systems Engineer', '5, ', '1', '1', '', 'ssssssssssssss', 12, 20, 1500, 3000, '08-07-2014', '0', 0, '2023-08-10', '2023-08-10'),
-	(9, 1, 'Senior Manager Finance', '5, ', '1', '1', 'aaa,bbb,ccc,ddd,', 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', 10, 20, 1500, 2000, '13-06-2023', '0', 0, '2023-08-10', '2023-08-10');
+INSERT INTO `job` (`id`, `id_employer`, `title`, `category`, `job_type`, `location`, `job_tag`, `description`, `job_requirements`, `minimum_rate`, `maximum_rate`, `minimum_salary`, `maximum_salary`, `closing_day`, `active`, `create_day`, `update_day`) VALUES
+	(4, 1, 'Social Media And Public Relation Executive', '4, ', 'Freelance', 'Hà Nội', 'sell,', 'The Social Media & PR Executive will be responsible for increasing hotel marketing communication across a variety of social media platforms to engage the audience in relevant conversations and coordinate all public relations activities.', '<ul class="list-1" style="box-sizing: border-box; overflow-wrap: break-word; margin-bottom: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; font-size: 14px; font-family: Poppins, HelveticaNeue, "Helvetica Neue", Helvetica, Arial, sans-serif; list-style-type: disc; color: rgb(102, 102, 102);"><li style="box-sizing: border-box; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">To oversee and manage social media accounts (twitter, facebook, linkedin, instagram,  Google and other social media channels in accordance with the hotel standards.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">The candidate will be primarily responsible for developing& executing strategies to promote the hotel across Social Media Networks with various Social Media Marketing tools provided in a global environment.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">To run high priority social creative campaigns, media engagement and third parties as required and ensuring that all work is aligned with brand marketing plans and campaigns.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">​To be responsible for reflecting the style and tone of voice across social media marketing and ensure that content and conversations match audience needs.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">Content creation, assimilation & distribution on Social Media Networks in appropriate situations.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">To advise and participate in the development and delivery of a social media strategy for hotel products & services.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">Conceptualize and execute social media campaigns, contest etc…</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">To source content and supply the copy and images for the blog, based on content required for email, website and social media campaigns.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">To create assets (images, gifs, video) that can be used across the social media channels in line with marketing priorities.</li></ul>', 50, 80, 15000, 20000, '10-10-2023', '1', '2023-08-03', '2023-08-11'),
+	(8, 1, 'Telecommunication Systems Engineer', '5, ', '1', '1', '', 'ssssssssssssss', '', 12, 20, 1500, 3000, '08-07-2014', '2', '2023-08-10', '2023-08-10');
 
 -- Dumping structure for table worksout.job_type
 DROP TABLE IF EXISTS `job_type`;
@@ -283,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `job_type` (
   PRIMARY KEY (`id_job_type`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table worksout.job_type: 4 rows
+-- Dumping data for table worksout.job_type: 5 rows
 /*!40000 ALTER TABLE `job_type` DISABLE KEYS */;
 INSERT INTO `job_type` (`id_job_type`, `name`) VALUES
 	(1, 'Full-Time'),
@@ -330,14 +326,15 @@ CREATE TABLE IF NOT EXISTS `tags` (
   `create_day` date NOT NULL,
   `update_day` date NOT NULL,
   PRIMARY KEY (`tag_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table worksout.tags: 19 rows
 /*!40000 ALTER TABLE `tags` DISABLE KEYS */;
 INSERT INTO `tags` (`tag_id`, `name`, `popular`, `create_day`, `update_day`) VALUES
-	(29, 'php', 1, '0000-00-00', '0000-00-00'),
-	(45, '$html', 2, '0000-00-00', '0000-00-00'),
-	(44, '', 5, '0000-00-00', '0000-00-00'),
+	(29, 'php', 4, '0000-00-00', '0000-00-00'),
+	(46, '$$html', 1, '0000-00-00', '0000-00-00'),
+	(45, '$html', 3, '0000-00-00', '0000-00-00'),
+	(44, '', 12, '0000-00-00', '0000-00-00'),
 	(43, 'ddd', 1, '0000-00-00', '0000-00-00'),
 	(42, 'ccc', 1, '0000-00-00', '0000-00-00'),
 	(41, 'bbb', 1, '0000-00-00', '0000-00-00'),
@@ -351,9 +348,10 @@ INSERT INTO `tags` (`tag_id`, `name`, `popular`, `create_day`, `update_day`) VAL
 	(33, 'sdfbsdf', 1, '0000-00-00', '0000-00-00'),
 	(32, 'sdbsd', 1, '0000-00-00', '0000-00-00'),
 	(31, 'ruby', 4, '0000-00-00', '0000-00-00'),
-	(30, 'javascript', 1, '0000-00-00', '0000-00-00'),
-	(28, 'css', 6, '0000-00-00', '0000-00-00'),
-	(27, 'html', 4, '0000-00-00', '0000-00-00');
+	(30, 'javascript', 2, '0000-00-00', '0000-00-00'),
+	(28, 'css', 10, '0000-00-00', '0000-00-00'),
+	(27, 'html', 6, '0000-00-00', '0000-00-00'),
+	(47, 'sell', 1, '0000-00-00', '0000-00-00');
 /*!40000 ALTER TABLE `tags` ENABLE KEYS */;
 
 -- Dumping structure for table worksout.user

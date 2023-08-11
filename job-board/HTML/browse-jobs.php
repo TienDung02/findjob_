@@ -7,7 +7,13 @@
 
 <!-- Header
 ================================================== -->
-<?php require_once('header.php') ?>
+<?php
+if (checkLogged() == 1) {
+    require_once('header_2.php');
+} else {
+    require_once('header.php');
+}
+?>
 <div class="clearfix"></div>
 
 

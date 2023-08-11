@@ -17,6 +17,7 @@
     $type = $_POST['job_type'];
     $categories = $_POST['category'];
     $desc = $_POST['description'];
+    $job_requirements = $_POST['job_requirements'];
 
     $minimum_rate = $_POST['minimum_rate'];
     $maximum_rate = $_POST['maximum_rate'];
@@ -48,8 +49,8 @@
         }
     }
 
-    $sql_insert_job = "INSERT INTO job (`id`, `id_employer`, `title`, `category`, `job_type`, `location`, `job_tag`, `description`, `minimum_rate`, `maximum_rate`, `minimum_salary`, `maximum_salary`, `closing_day`, `active`, `create_day`, `update_day`) 
-                        VALUES ('', '$id_employer', '$title', '$job_categories', '$type', '$location', '$job_tags', '$desc', $minimum_rate, $maximum_rate, $minimum_salary, $maximum_salary, '$closing_date', 0, '$postday', '$updateday')";
+    $sql_insert_job = "INSERT INTO job (`id`, `id_employer`, `title`, `category`, `job_type`, `location`, `job_tag`, `description`, `job_requirements` ,`minimum_rate`, `maximum_rate`, `minimum_salary`, `maximum_salary`, `closing_day`, `active`, `create_day`, `update_day`) 
+                        VALUES ('', '$id_employer', '$title', '$job_categories', '$type', '$location', '$job_tags', '$desc', '$job_requirements',$minimum_rate, $maximum_rate, $minimum_salary, $maximum_salary, '$closing_date', 0, '$postday', '$updateday')";
 //    echo $sql_insert_job;die;
     if ($connect->query($sql_insert_job) === TRUE) {
         $_SESSION['insert_job'] = 1;
