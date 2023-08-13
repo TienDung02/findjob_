@@ -35,7 +35,6 @@ if (empty($data_user)) {
 
                     <li><a href="#">Pages</a>
                         <ul>
-                            <li><a href="job-page.php">Job Page</a></li>
                             <li><a href="job-page-alt.php">Job Page Alternative</a></li>
                             <li><a href="resume-page.php">Resume Page</a></li>
                             <li><a href="shortcodes.php">Shortcodes</a></li>
@@ -59,7 +58,6 @@ if (empty($data_user)) {
                         ?>
                         <li><a href="add-job.php">Add Job</a></li>
                         <li><a href="manage-jobs.php">Manage Jobs</a></li>
-                        <li><a href="manage-applications.php">Manage Applications</a></li>
                         <li><a href="browse-resumes.php">Browse Resumes</a></li>
                         <li><a href="add_company.php">Add Company</a></li>
                     <?php

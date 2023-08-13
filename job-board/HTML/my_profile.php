@@ -112,6 +112,84 @@
 <!-- Scripts
 ================================================== -->
 <?php require_once('script_tag.php') ?>
+<?php
+if (isset($_SESSION['change_password']) && $_SESSION['change_password'] == 1) {
+    ?>
+    <script>
+        $(document).ready(function executeExample() {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'success',
+                title: 'Update success'
+            })
+        });
+    </script>
+    <?php
+} elseif (isset($_SESSION['change_password']) && $_SESSION['change_password'] == 0) {
+    ?>
+    <script>
+        $(document).ready(function executeExample() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error system!',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        });
 
+    </script>
+    <?php
+}elseif (isset($_SESSION['change_password']) && $_SESSION['change_password'] == 2) {
+    ?>
+    <script>
+        $(document).ready(function executeExample() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Current password incorrect!',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        });
+    </script>
+    <?php
+}elseif (isset($_SESSION['change_password']) && $_SESSION['change_password'] == 3) {
+    ?>
+    <script>
+        $(document).ready(function executeExample() {
+            Swal.fire({
+                icon: 'error',
+                title: 'New password and confirm password inconsistent!',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        });
+
+    </script>
+    <?php
+}
+unset($_SESSION['change_password']);
+?>
 </body>
 </html>

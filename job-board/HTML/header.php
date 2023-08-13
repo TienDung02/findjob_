@@ -13,7 +13,6 @@
 
                     <li><a href="#">Pages</a>
                         <ul>
-                            <li><a href="job-page.php">Job Page</a></li>
                             <li><a href="job-page-alt.php">Job Page Alternative</a></li>
                             <li><a href="resume-page.php">Resume Page</a></li>
                             <li><a href="shortcodes.php">Shortcodes</a></li>

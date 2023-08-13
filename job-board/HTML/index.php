@@ -10,12 +10,11 @@
 //print_r($_SESSION);die;
 if (checkLogged() == 1) {
     require_once('header_2.php');
-    $sql_select_job = "SELECT job.*, company.* FROM job JOIN employer ON job.id_employer = employer.id_employer JOIN company ON company.id_employer = employer.id_employer GROUP BY id";
-    $jobs = callsql($sql_select_job);
-
 } else {
     require_once('header.php');
 }
+$sql_select_job = "SELECT job.*, company.* FROM job JOIN employer ON job.id_employer = employer.id_employer JOIN company ON company.id_employer = employer.id_employer GROUP BY id";
+$jobs = callsql($sql_select_job);
 ?>
 <div class="clearfix"></div>
 
@@ -33,6 +32,7 @@ if (checkLogged() == 1) {
     <div class="sixteen columns">
         <h3 class="margin-bottom-25">Popular Categories</h3>
         <?php
+
         $sql_select_categories = "select * from categories where parent_id = 0";
         $categories = callsql($sql_select_categories);
         ?>
@@ -64,11 +64,26 @@ if (checkLogged() == 1) {
                 foreach ($jobs as $job) {
                     ?>
                     <li class="highlighted">
-                        <a href="job-page.php" class="d-flex align-items-center">
+                        <a href="job-page.php?id=<?php echo $job['id'] ?>" class="d-flex align-items-center">
                             <img class="p-0 m-0 float-none" src="<?php echo $job['company_logo']; ?>" style="width: 100px; height: 100px" alt="">
                             <div class="job-list-content ms-5">
                                 <h4><?php echo $job['title'] ?><span
-                                            class="ms-3 full-time "><?php echo $job['job_type']; ?></span>
+                                            class="ms-3 rounded-2
+                                        <?php
+                                            if ($job['job_type'] == 'Full-Time') {
+                                                echo 'bg-primary';
+                                            } elseif ($job['job_type'] == 'Part-Time') {
+                                                echo 'bg-danger';
+                                            } elseif ($job['job_type'] == 'Internship') {
+                                                echo 'bg-warning';
+                                            } elseif ($job['job_type'] == 'Freelance') {
+                                                echo 'bg-success';
+                                            } elseif ($job['job_type'] == 'Temporary') {
+                                                echo 'bg-info';
+                                            }
+
+
+                                            ?>"><?php echo $job['job_type']; ?></span>
                                 </h4>
                                 <div class="job-icons ">
                                     <span><i class="fa fa-briefcase"></i><?php echo $job['company_name']; ?></span>
@@ -156,38 +171,6 @@ if (checkLogged() == 1) {
 </div>
 
 
-<!-- Testimonials -->
-<div id="testimonials">
-    <!-- Slider -->
-    <div class="container">
-        <div class="sixteen columns">
-            <div class="testimonials-slider">
-                <ul class="slides">
-                    <li>
-                        <p>I have already heard back about the internship I applied through Job Finder, that's the
-                            fastest job reply I've ever gotten and it's so much better than waiting weeks to hear back.
-                            <span>Collis Ta’eed, Envato</span></p>
-                    </li>
-
-                    <li>
-                        <p>Nam eu eleifend nulla. Duis consectetur sit amet risus sit amet venenatis. Pellentesque
-                            pulvinar ante a tincidunt placerat. Donec dapibus efficitur arcu, a rhoncus lectus egestas
-                            elementum.
-                            <span>John Doe</span></p>
-                    </li>
-
-                    <li>
-                        <p>Maecenas congue sed massa et porttitor. Duis placerat commodo ex, ut faucibus est facilisis
-                            ac. Donec eleifend arcu sed sem posuere aliquet. Etiam lorem metus, suscipit vel tortor
-                            vitae.
-                            <span>Tom Smith</span></p>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <!-- Infobox -->

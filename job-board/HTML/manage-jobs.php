@@ -53,7 +53,24 @@
                     </td>
                     <td><?php echo $job['create_day']?></td>
                     <td><?php echo $job['closing_day'] ?></td>
-                    <td class="centered">-</td>
+                    <td class="centered">
+                    <?php
+
+                    $sql_select_apply_job = "select COUNT(id_candidate) as cadidate from apply_job where id_job = " . $job['id'];
+                    $candidate = callsql($sql_select_apply_job);
+                    $candidate = $candidate[0];
+                    if ($candidate['cadidate'] > 0){
+                        ?>
+                        <a href="manage-applications.php?id_job=<?php echo $job['id']; ?>" class="button">Show (<?php echo $candidate['cadidate']; ?>)</a>
+                        <?php
+                    }else{
+                        echo '-';
+                    }
+                    ?>
+
+
+
+                    </td>
                     <td class="action">
                         <a href="add-job.php?id=<?php echo $job['id'] ?>"><i class="fa fa-pencil"></i> Edit</a>
                         <a href="#"><i class="bi bi-eye-fill"></i> View</a>
@@ -61,31 +78,7 @@
                     </td>
                 </tr>
                 <?php } ?>
-                <!-- Item #2 -->
-                <tr>
-                    <td class="title"><a href="#">Web Developer - Front End Web Development, Relational Databases</a></td>
-                    <td class="centered">-</td>
-                    <td>September 30, 2015</td>
-                    <td>October 10, 2015</td>
-                    <td class="centered"><a href="manage-applications.php" class="button">Show (4)</a></td>
-                    <td class="action">
-                        <a href="#"><i class="fa fa-pencil"></i> Edit</a>
-                        <a href="#"><i class="fa  fa-check "></i> Mark Filled</a>
-                        <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-                    </td>
-                </tr>
 
-                <!-- Item #2 -->
-                <tr>
-                    <td class="title"><a href="#">Power Systems User Experience Designer</a></td>
-                    <td class="centered"><i class="fa fa-check"></i></td>
-                    <td>May 16, 2015</td>
-                    <td>June 30, 2015</td>
-                    <td class="centered"><a href="manage-applications.php" class="button">Show (9)</a></td>
-                    <td class="action">
-                        <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-                    </td>
-                </tr>
             </table>
             <br>
             <a href="add-job.php" class="button">Add Job</a>

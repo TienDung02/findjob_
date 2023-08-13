@@ -23,6 +23,8 @@ $categories = $_POST['category'];
 $desc = $_POST['description'];
 $job_requirements = $_POST['job_requirements'];
 
+//echo $job_requirements;die;
+
 $minimum_rate = $_POST['minimum_rate'];
 $maximum_rate = $_POST['maximum_rate'];
 $minimum_salary = $_POST['minimum_salary'];
@@ -42,6 +44,7 @@ foreach ($categories as $category){
 
 foreach ($tags_input as $tag){
     $tag = str_replace(' ', '', $tag);
+    $tag = str_replace(',', '', $tag);
     $job_tags = $job_tags . $tag . ',' ;
     $sql_select_tag = mysqli_query($connect, "select * from tags where name = '$tag' ") or exit(mysqli_error($connect));
     if(mysqli_num_rows($sql_select_tag)) {
@@ -53,7 +56,9 @@ foreach ($tags_input as $tag){
     }
 }
 
-$sql_update_job = "UPDATE `job` SET `title`='$title',`category`='$job_categories',`job_type`='$type',`location`='$location',`job_tag`='$$job_tags',
+//echo $job_tags;die;
+
+$sql_update_job = "UPDATE `job` SET `title`='$title',`category`='$job_categories',`job_type`='$type',`location`='$location',`job_tag`='$job_tags',
                  `description`='$desc', `job_requirements`='$job_requirements',`minimum_rate`='$minimum_rate',`maximum_rate`='$maximum_rate',`minimum_salary`='$minimum_salary',
                  `maximum_salary`='$maximum_salary',`closing_day`='$closing_date',`update_day`='$updateday' WHERE `id` = $id";
 //    echo $sql_update_job;die;

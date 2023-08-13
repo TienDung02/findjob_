@@ -2,6 +2,9 @@
 <?php require_once('connection.php') ?>
 <?php require_once('function.php') ?>
 <?php
+
+
+
 $user_name = $_POST['user_name'];
 $user_password = $_POST['password'];
 $pass = md5($user_password);
@@ -17,7 +20,13 @@ if (!empty($login)) {
             $_SESSION['login']['role'] == 3;
             header("location:admin/category/admin-category-page.php?page=1");
         }else{
-            header("location:my_profile.php");
+
+            if (isset($_SESSION['url_before_login']) && $_SESSION['url_before_login'] != ''){
+                $url_before_login = $_SESSION['url_before_login'];
+                header("location:".$url_before_login);
+            }else{
+                header("location:my_profile.php");
+            }
         }
     } else {
         $_SESSION['login_success'] = 0;

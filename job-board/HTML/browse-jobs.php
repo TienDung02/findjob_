@@ -26,9 +26,7 @@ if (checkLogged() == 1) {
 			<h2>Web, Software & IT</h2>
 		</div>
 
-		<div class="six columns">
-			<a href="add-job.php" class="button">Post a Job, It’s Free!</a>
-		</div>
+
 
 	</div>
 </div>
@@ -47,7 +45,7 @@ if (checkLogged() == 1) {
 			<div class="clearfix"></div>
 		</form>
         <?php
-        $sql_select_job = "SELECT job.*, company.* FROM job JOIN employer ON job.id_employer = employer.id_employer JOIN company ON company.id_employer = employer.id_employer GROUP BY id";
+        $sql_select_job = "SELECT job.*, company.* FROM job JOIN employer ON job.id_employer = employer.id_employer JOIN company ON company.id_employer = employer.id_employer where job.active != 2 GROUP BY id";
         $jobs = callsql($sql_select_job);
         ?>
 		<ul class="job-list full">
@@ -55,11 +53,25 @@ if (checkLogged() == 1) {
             foreach ($jobs as $job){
             ?>
                 <li class="highlighted">
-                    <a href="job-page.php" class="d-flex align-items-center">
+                    <a href="job-page.php?id=<?php echo $job['id']; ?>" class="d-flex align-items-center">
                         <img class="p-0 m-0 float-none" src="<?php echo $job['company_logo']; ?>" style="width: 100px; height: 100px" alt="">
                         <div class="job-list-content ms-5">
                             <h4><?php echo $job['title'] ?><span
-                                        class="ms-3 full-time "><?php echo $job['job_type']; ?></span>
+                                        class="ms-3 full-time rounded-2
+                                        <?php
+                                        if ($job['job_type'] == 'Full-Time'){
+                                            echo 'bg-primary';
+                                        }elseif ($job['job_type'] == 'Part-Time'){
+                                            echo 'bg-danger';
+                                        }elseif ($job['job_type'] == 'Internship'){
+                                            echo 'bg-warning';
+                                        }elseif ($job['job_type'] == 'Freelance'){
+                                            echo 'bg-success';
+                                        }elseif ($job['job_type'] == 'Temporary'){
+                                            echo 'bg-info';
+                                        }
+
+                                        ?>"><?php echo $job['job_type']; ?></span>
                             </h4>
                             <div class="job-icons ">
                                 <span><i class="fa fa-briefcase"></i><?php echo $job['company_name']; ?></span>

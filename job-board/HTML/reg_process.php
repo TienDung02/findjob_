@@ -55,19 +55,29 @@ if(mysqli_num_rows($select)) {
     }
 
     $sql_insert_user = "insert into user (id_user, user_name, email, password, role, create_day, update_day) values ('', '$user_name', '$email', '$pass', $type_register, '$postday', '$updateday')";
-    if ($type_register == 1){
-        $sql_insert_profile = "insert into candidate (avatar, first_name, last_name, tel, email, about, create_day) values ('', '', '', '', '$email', '', '$postday')";
-    }else{
-        $sql_insert_profile = "insert into employer (avatar, first_name, last_name, tel, email, about, create_day) values ('', '', '', '', '$email', '', '$postday')";
-    }
 
 
-    if ($connect->query($sql_insert_user) === TRUE && $connect->query($sql_insert_profile) === TRUE) {
-        $_SESSION['reg'] = 1;
-        header("location:my_account.php");
+
+
+    if ($connect->query($sql_insert_user) === TRUE ) {
+        $sql_select_user_id = "select id_user from user where email = '$email'";
+        $user_id = callsql($sql_select_user_id);
+        $user_id = $user_id[0];
+        if ($type_register == 1){
+            $sql_insert_profile = "INSERT INTO `candidate`(`id_candidate`, `id_user`, `email`, `active`, `create_day`) VALUES ('','" . $user_id['id_user'] . "','$email','1','$postday')";
+        }else{
+            $sql_insert_profile = "INSERT INTO `employer`(`id_employer`, `id_user`, `email`, `active`, `create_day`) VALUES ('','" . $user_id['id_user'] . "','$email','1','$postday')";
+        }
+        if ($connect->query($sql_insert_profile) === TRUE){
+            $_SESSION['reg'] = 1;
+            header("location:my_account.php");
+        }else{
+            $_SESSION['reg'] = 0;
+            header("location:my_account.php");
+        }
     } else {
         $_SESSION['reg'] = 0;
-        echo "Lỗi: " . $sql_insert_user . "<br>" . $conn->error;
+        header("location:my_account.php");
     }
 }
 //Create an instance; passing `true` enables exceptions

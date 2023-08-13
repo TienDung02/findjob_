@@ -106,9 +106,11 @@ if (checkLogged() == 1) {
                         <?php
                         $sql_select_category = "select * from categories";
                         $categories = callsql($sql_select_category);
-
+//                        print_r($categories);
                         $job_categories = $job['category'];
                         $job_categories = explode(',', $job_categories);
+//                        print_r($job_categories);
+//                        echo 'aaaaaaaaaaaaaaaaaaaaaaaaaaaa----------' . $job_categories;
                         foreach ($categories as $category) { ?>
                             <option <?php if ($id) {
 //                                foreach ($job_categories as $job_category) {
@@ -130,7 +132,6 @@ if (checkLogged() == 1) {
 
                         $tags = $job['job_tag'];
                         $tags = explode(',', $tags);
-                        print_r($tags);
                         foreach ($tags as $tag) {
                             ?>
                             <option value="<?php echo $tag ?>"> <?php echo $tag ?> </option>
@@ -150,7 +151,7 @@ if (checkLogged() == 1) {
             </div>
             <div class="form">
                 <h5>Job requirements</h5>
-                <textarea class="WYSIWYG d-none" cols="40" rows="3" id="summernote" name="job_requirements"
+                <textarea class="WYSIWYG" cols="40" rows="3" id="summernote" name="job_requirements"
                           spellcheck="true"><?php if ($id != '' && $id != '0') {
                         echo $job['job_requirements'];
                     } ?></textarea>
@@ -189,7 +190,7 @@ if (checkLogged() == 1) {
                            } ?>"/>
                 </div>
             </div>
-
+            <input type="hidden" id="alert_123">
             <!-- Closing Date -->
             <div class="form">
                 <h5>Closing Date <span>(optional)</span></h5>
@@ -197,31 +198,29 @@ if (checkLogged() == 1) {
                     <?php if ($id) {
                         $closing_day = $job['closing_day'];
                         $closing_day = explode('-', $closing_day);
+                    }
                         ?>
                         <div class="select">
-                            <input type="hidden" class="select_day" value="<?php echo $closing_day[0]??'' ?>">
-                            <select class="auto-select" id="select_day" name="closing_day" data-class="<?php echo $closing_day[0]??'' ?>">
+                            <input type="hidden" class="select_day" value="<?php if ($id) { echo $closing_day[0]??''; } ?>">
+                            <select class="auto-select" id="select_day" name="closing_day" data-class="<?php if ($id) { echo $closing_day[0]??'';} ?>">
                                 <option>Day</option>
                             </select>
                         </div>
                         <div class="select">
-                            <input type="hidden" class="select_month" value="<?php echo $closing_day[1]??'' ?>">
-                            <select class="auto-select" id="select_month" name="closing_month" data-class="<?php echo $closing_day[1]??'' ?>">
+                            <input type="hidden" class="select_month" value="<?php if ($id) {echo $closing_day[1]??'';} ?>">
+                            <select class="auto-select" id="select_month" name="closing_month" data-class="<?php if ($id) {echo $closing_day[1]??'';} ?>">
                                 <option>Month</option>
                             </select>
                         </div>
                         <div class="select">
-                            <input type="hidden" class="select_year" value="<?php echo $closing_day[2]??'' ?>">
-                            <select class="auto-select" id="select_year" name="closing_year" data-class="<?php echo $closing_day[1]??'' ?>">
+                            <input type="hidden" class="select_year" value="<?php if ($id) {echo $closing_day[2]??'';} ?>">
+                            <select class="auto-select" id="select_year" name="closing_year" data-class="<?php if ($id) {echo $closing_day[1]??'';} ?>">
                                 <option>Year</option>
                             </select>
                         </div>
-
-
-
                         <?php
 
-                    } ?>
+                    ?>
                 </div>
                 <p class="note">Deadline for new applicants.</p>
             </div>
@@ -283,20 +282,7 @@ if (checkLogged() == 1) {
                 $(this).prop('selected',true);
             }
         });*/
-        $('#summernote').summernote({
-            placeholder: '',
-            tabsize: 2,
-            height: 120,
-            toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'underline', 'clear']],
-                ['color', ['#f00']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['table', ['table']],
-                ['insert', ['link', 'picture', 'video']],
-                ['view', ['fullscreen', 'codeview', 'help']]
-            ]
-        });
+
     });
 
 </script>
@@ -342,26 +328,30 @@ if (isset($_SESSION['insert_job']) && $_SESSION['insert_job'] == 1) {
     </script>
     <?php
 }
+
+
+//if (isset($_SESSION['insert_job']) && $_SESSION['insert_job'] == 1) {
+    ?>
+    <script>
+        // document.getElementById("#alert_123").innerHTML = alert_after_load('success', 'Add success');
+
+    </script>
+<?php
+//}
+
  unset($_SESSION['insert_job']);
 ?>
 <script>
-    $(document).ready(function() {
-        setTimeout(function() {
-            // if ($('.tag').length) {
-            //     alert("tim` thay");
-            //     $(".input_tags_").removeAttr("required");
-            // }else {
-            //     alert('khong tim thay');
-            //     $(".input_tags_").attr("required", "true").attr("placeholder", "Enter tags");
-            // }
-            console.log('aaaaaaaaaaaaaaaaaaaaaa');
-            // alert('heyyy');
-
-        }, 1000);
-    });
+    // $(document).ready(function() {
+    //     ClassicEditor
+    //         .create( document.querySelector( '#editor' ) )
+    //         .catch( error => {
+    //             console.error( error );
+    //         } );
+    // });
 </script>
 <!-- WYSIWYG Editor -->
-<script type="text/javascript" src="scripts/jquery.sceditor.bbcode.min.js"></script>
+<!--<script type="text/javascript" src="scripts/jquery.sceditor.bbcode.min.js"></script>-->
 
 
 </body>

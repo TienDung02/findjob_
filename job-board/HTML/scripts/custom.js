@@ -451,30 +451,37 @@
             anchor.parent('li').trigger("click");
         }
 
+        /*----------------------------*/
+
+
         // ----------------------- Change Type Register -------------------//
-        $('.candidate_reg').click(function(){
+        $('.candidate_reg').click(function () {
             $(this).addClass('active');
             $('.employer_reg').removeClass('active');
             $('#reg_type').val('1');
         });
 
-        $('.employer_reg').click(function(){
+        $('.employer_reg').click(function () {
             $(this).addClass('active');
             $('.candidate_reg').removeClass('active');
             $('#reg_type').val('2');
         });
+        /*--------------------*/
+
 
         // ----------------------- Input Plugin -------------------//
         $(".tags_input").tagsinput({
             maxTags: 4,
         });
+        /*----------------------*/
+
 
         // ----------------------- My Profile Preview Image -------------------//
 
-        $('#fileInput2').on('change', function() {
+        $('#fileInput2').on('change', function () {
             let $input;
             $input = $(this);
-            if($input.val().length > 0) {
+            if ($input.val().length > 0) {
                 let fileReader;
                 fileReader = new FileReader();
                 fileReader.onload = function (data) {
@@ -484,6 +491,8 @@
                 $('.image-preview').css('display', 'block');
             }
         });
+        /*----------------------------*/
+
 
         // ----------------------- Upload File Get File Name -------------------//
 
@@ -493,12 +502,13 @@
             $(parent).find('.inputFileMaskText2').first().val(fileName);
             // $('.inputFileMaskText2').val(fileName);
         });
+        /*----------------------------*/
 
 
         // ------------------------ Input Date --------------------------------- //
 
-                /* :: DATE PICKER
-         ------------------------------------------------ */
+        /* :: DATE PICKER
+ ------------------------------------------------ */
 
         // :: DAY
         var $select_day = $("#select_day");
@@ -548,12 +558,20 @@
             $(".menu_02").addClass('hide_menu_');
             $(".menu_01").removeClass('hide_menu_');
         });
+        /*----------------------------*/
+
 
         // ------------------------------------ Summernote ---------------------------------------------------//
 
+        $('#summernote').summernote({
+            placeholder: 'Hello Bootstrap 5',
+            tabsize: 2,
+            height: 250
+        });
+        /*----------------------------*/
 
 
-        // -----------------------------------------------------------------------------//
+        // -------------------------------------- Alert Delete ---------------------------------------//
 
         $('.alert_delete').on('click', function () {
 
@@ -588,31 +606,51 @@
                 }
             })
         })
-
-        // const f = document.getElementById("hide_menu");
-        // const v = document.getElementsByClassName("menu_01");
-        // document.addEventListener(
-        //     "click",
-        //     (ev) => {
-        //         console.log('aaaaaaaaaaaaaaaaaaaaaaabc');
-        //         v.style.transform = `translateX(${ev.clientX - 280}px)`;
-        //     },
-        //     false,
-        // );
+        /*----------------------------*/
 
 
+        // ----------------------------------------- Alert To Log In -------------------------------------------------//
+        $('.alert_login').on('click', function () {
+            Swal.fire({
+                icon: 'question',
+                title: 'You need to login first!',
+                showDenyButton: true,
+                confirmButtonText: 'Go to login',
+                denyButtonText: `Not now`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '../my_account.php';
+                } else if (result.isDenied) {
+                }
+            })
+        })
+
+        /*----------------------------*/
 
 
-
-
-
-
-
+        function alert_after_load(title, icon) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+                Toast.fire({
+                    icon: icon,
+                    title: title
+                }
+            )
+        }
 
 // ------------------ End Document ------------------ //
     });
 
 })(this.jQuery);
-$(document).ready(function() {
-    $('#summernote').summernote();
-});
+
+
+

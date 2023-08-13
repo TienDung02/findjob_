@@ -21,6 +21,7 @@
 					<li>You are here:</li>
 					<li><a href="#">Home</a></li>
 					<li>My Account</li>
+<!--                    <li>--><?php //print_r($_SESSION); ?><!--</li>-->
 				</ul>
 			</nav>
 		</div>
@@ -43,7 +44,7 @@
 
 		<div class="tabs-container">
 			<!-- Login -->
-			<div class="tab-content" id="tab1" style="display: none;">
+			<div class="tab-content" id="tab1" style="display: block;">
 
 				<h3 class="margin-bottom-10 margin-top-10">Login</h3>
 
@@ -167,6 +168,24 @@ if (isset($_SESSION['reg']) && $_SESSION['reg'] == 1) {
 
     </script>
     <?php
+}elseif (isset($_SESSION['reg']) && $_SESSION['reg'] == 0) {
+    ?>
+    <script>
+        $(document).ready(function executeExample() {
+            Swal.fire({
+                icon: 'error',
+                title: 'System error',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+        });
+
+    </script>
+    <?php
 }
 unset($_SESSION['reg']);
  if (isset($_SESSION['login_success']) && $_SESSION['login_success'] == 1) {
@@ -197,7 +216,7 @@ unset($_SESSION['reg']);
          $(document).ready(function executeExample() {
              Swal.fire({
                  icon: 'error',
-                 title: 'Đăng nhập không thành công! Tài khoản hoặc mật khẩu không đúng!',
+                 title: 'Tài khoản hoặc mật khẩu không đúng!',
                  showClass: {
                      popup: 'animate__animated animate__fadeInDown'
                  },

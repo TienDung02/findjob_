@@ -20,6 +20,28 @@ DROP DATABASE IF EXISTS `worksout`;
 CREATE DATABASE IF NOT EXISTS `worksout` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `worksout`;
 
+-- Dumping structure for table worksout.apply_job
+DROP TABLE IF EXISTS `apply_job`;
+CREATE TABLE IF NOT EXISTS `apply_job` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_job` int NOT NULL,
+  `id_candidate` int NOT NULL,
+  `full_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `message` varchar(999) COLLATE utf8mb4_general_ci NOT NULL,
+  `cv` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `create_day` date NOT NULL,
+  `update_day` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table worksout.apply_job: 2 rows
+/*!40000 ALTER TABLE `apply_job` DISABLE KEYS */;
+INSERT INTO `apply_job` (`id`, `id_job`, `id_candidate`, `full_name`, `email`, `message`, `cv`, `create_day`, `update_day`) VALUES
+	(1, 4, 6, 'afb', 'nongtiendung1501@gmail.com', 'dfbsdfb', 'cv/1691941541ico-01.png', '2023-08-13', '2023-08-13'),
+	(2, 4, 1, 'Nishan Madhushanka', 'nongtiendung2309@gmail.com', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'cv/1691943680user_02.png', '2023-08-13', '2023-08-13');
+/*!40000 ALTER TABLE `apply_job` ENABLE KEYS */;
+
 -- Dumping structure for table worksout.blog
 DROP TABLE IF EXISTS `blog`;
 CREATE TABLE IF NOT EXISTS `blog` (
@@ -42,6 +64,22 @@ INSERT INTO `blog` (`id_blog`, `title`, `author`, `category_blog`, `img`, `desc`
 	(8, 'Hey Job Seeker, It’s Time To Get Up And Get Hired', 'Purethemes', '', 'img_blog/1691684205blog-post-01 (1).jpg', 'One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.\r\n\r\nThe bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked. “What’s happened to me? ” he thought. It wasn’t a dream.\r\n\r\nHis room, a proper human room although a little too small, lay peacefully between its four familiar walls. A collection of textile samples lay spread out on the table – Samsa was a travelling salesman – and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame. It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur muff that covered the whole of her lower arm towards the viewer. Gregor then turned to look out the window at the dull weather. Drops', '0000-00-00', '0000-00-00');
 /*!40000 ALTER TABLE `blog` ENABLE KEYS */;
 
+-- Dumping structure for table worksout.bookmark
+DROP TABLE IF EXISTS `bookmark`;
+CREATE TABLE IF NOT EXISTS `bookmark` (
+  `id_bookmark` int NOT NULL AUTO_INCREMENT,
+  `id_candidate` int NOT NULL,
+  `id_job` int NOT NULL,
+  PRIMARY KEY (`id_bookmark`)
+) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table worksout.bookmark: 3 rows
+/*!40000 ALTER TABLE `bookmark` DISABLE KEYS */;
+INSERT INTO `bookmark` (`id_bookmark`, `id_candidate`, `id_job`) VALUES
+	(38, 1, 4),
+	(37, 6, 11);
+/*!40000 ALTER TABLE `bookmark` ENABLE KEYS */;
+
 -- Dumping structure for table worksout.candidate
 DROP TABLE IF EXISTS `candidate`;
 CREATE TABLE IF NOT EXISTS `candidate` (
@@ -57,11 +95,12 @@ CREATE TABLE IF NOT EXISTS `candidate` (
   `create_day` date NOT NULL,
   `update_day` date NOT NULL,
   PRIMARY KEY (`id_candidate`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table worksout.candidate: ~1 rows (approximately)
+-- Dumping data for table worksout.candidate: ~2 rows (approximately)
 INSERT INTO `candidate` (`id_candidate`, `id_user`, `avatar`, `first_name`, `last_name`, `tel`, `email`, `about`, `active`, `create_day`, `update_day`) VALUES
-	(1, 1, 'img_temp/user_02.png', '123', 'ABC', '0335594771', 'nongtiendung2309@gmail.com', 'Candidate\r\n', 1, '0000-00-00', '2023-08-10');
+	(1, 1, 'img_temp/user_02.png', '123', 'ABC', '0335594771', 'nongtiendung2309@gmail.com', 'Candidate\r\n', 1, '0000-00-00', '2023-08-10'),
+	(6, 11, '', '', '', '', 'nongtiendung1501@gmail.com', '', 1, '2023-08-13', '0000-00-00');
 
 -- Dumping structure for table worksout.candidate_education
 DROP TABLE IF EXISTS `candidate_education`;
@@ -214,6 +253,7 @@ CREATE TABLE IF NOT EXISTS `employer` (
   `tel` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `about` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `active` int NOT NULL,
   `create_day` date NOT NULL,
   `update_day` date NOT NULL,
   PRIMARY KEY (`id_employer`)
@@ -221,8 +261,8 @@ CREATE TABLE IF NOT EXISTS `employer` (
 
 -- Dumping data for table worksout.employer: 1 rows
 /*!40000 ALTER TABLE `employer` DISABLE KEYS */;
-INSERT INTO `employer` (`id_employer`, `id_user`, `avatar`, `first_name`, `last_name`, `tel`, `email`, `about`, `create_day`, `update_day`) VALUES
-	(1, 2, 'img_temp/user_01.png', 'ABC', '123', '0335594771', 'nongtiendung2810@gmail.com', 'employer', '2023-08-06', '2023-08-06');
+INSERT INTO `employer` (`id_employer`, `id_user`, `avatar`, `first_name`, `last_name`, `tel`, `email`, `about`, `active`, `create_day`, `update_day`) VALUES
+	(1, 2, 'img_temp/user_01.png', 'ABC', '123', '0335594771', 'nongtiendung2810@gmail.com', 'employer', 0, '2023-08-06', '2023-08-06');
 /*!40000 ALTER TABLE `employer` ENABLE KEYS */;
 
 -- Dumping structure for table worksout.industry
@@ -260,16 +300,19 @@ CREATE TABLE IF NOT EXISTS `job` (
   `minimum_salary` int NOT NULL,
   `maximum_salary` int NOT NULL,
   `closing_day` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `apply` int NOT NULL,
   `active` varchar(999) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `create_day` date NOT NULL,
   `update_day` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table worksout.job: ~6 rows (approximately)
-INSERT INTO `job` (`id`, `id_employer`, `title`, `category`, `job_type`, `location`, `job_tag`, `description`, `job_requirements`, `minimum_rate`, `maximum_rate`, `minimum_salary`, `maximum_salary`, `closing_day`, `active`, `create_day`, `update_day`) VALUES
-	(4, 1, 'Social Media And Public Relation Executive', '4, ', 'Freelance', 'Hà Nội', 'sell,', 'The Social Media & PR Executive will be responsible for increasing hotel marketing communication across a variety of social media platforms to engage the audience in relevant conversations and coordinate all public relations activities.', '<ul class="list-1" style="box-sizing: border-box; overflow-wrap: break-word; margin-bottom: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; font-size: 14px; font-family: Poppins, HelveticaNeue, "Helvetica Neue", Helvetica, Arial, sans-serif; list-style-type: disc; color: rgb(102, 102, 102);"><li style="box-sizing: border-box; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">To oversee and manage social media accounts (twitter, facebook, linkedin, instagram,  Google and other social media channels in accordance with the hotel standards.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">The candidate will be primarily responsible for developing& executing strategies to promote the hotel across Social Media Networks with various Social Media Marketing tools provided in a global environment.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">To run high priority social creative campaigns, media engagement and third parties as required and ensuring that all work is aligned with brand marketing plans and campaigns.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">​To be responsible for reflecting the style and tone of voice across social media marketing and ensure that content and conversations match audience needs.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">Content creation, assimilation & distribution on Social Media Networks in appropriate situations.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">To advise and participate in the development and delivery of a social media strategy for hotel products & services.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">Conceptualize and execute social media campaigns, contest etc…</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">To source content and supply the copy and images for the blog, based on content required for email, website and social media campaigns.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">To create assets (images, gifs, video) that can be used across the social media channels in line with marketing priorities.</li></ul>', 50, 80, 15000, 20000, '10-10-2023', '1', '2023-08-03', '2023-08-11'),
-	(8, 1, 'Telecommunication Systems Engineer', '5, ', '1', '1', '', 'ssssssssssssss', '', 12, 20, 1500, 3000, '08-07-2014', '2', '2023-08-10', '2023-08-10');
+-- Dumping data for table worksout.job: ~2 rows (approximately)
+INSERT INTO `job` (`id`, `id_employer`, `title`, `category`, `job_type`, `location`, `job_tag`, `description`, `job_requirements`, `minimum_rate`, `maximum_rate`, `minimum_salary`, `maximum_salary`, `closing_day`, `apply`, `active`, `create_day`, `update_day`) VALUES
+	(4, 1, 'Social Media And Public Relation Executive', '4, 9', 'Freelance', 'Hà Nội', '$sell,,,,,', 'The Social Media & PR Executive will be responsible for increasing hotel marketing communication across a variety of social media platforms to engage the audience in relevant conversations and coordinate all public relations activities.', '<ul class=""""""list-1"""""" style=""""""box-sizing:""""" border-box;="""""""""" overflow-wrap:="""""""""" break-word;="""""""""" margin-bottom:="""""""""" 10px;="""""""""" font-style:="""""""""" normal;="""""""""" font-variant-ligatures:="""""""""" font-variant-caps:="""""""""" font-weight:="""""""""" 400;="""""""""" font-size:="""""""""" 14px;="""""""""" font-family:="""""""""" poppins,="""""""""" helveticaneue,="""""""""" "helvetica="""""""""" neue",="""""""""" helvetica,="""""""""" arial,="""""""""" sans-serif;="""""""""" list-style-type:="""""""""" disc;="""""""""" color:="""""""""" rgb(102,="""""""""" 102,="""""""""" 102);"=""""""""""><li style=""""""box-sizing:""""" border-box;="""""""""" margin-bottom:="""""""""" 7px;="""""""""" padding:="""""""""" 5px;="""""""""" list-style-position:="""""""""" outside;="""""""""" list-style-image:="""""""""" none;"=""""""""""><p style="box-sizing: border-box; overflow-wrap: break-word; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; font-size: 14px; line-height: inherit; font-family: Poppins, HelveticaNeue, "Helvetica Neue", Helvetica, Arial, sans-serif; color: rgb(102, 102, 102);"><span style="box-sizing: border-box; font-weight: 700; color: rgb(51, 51, 51);">Job Responsibilities: </span></p><ul class="list-1" style="box-sizing: border-box; overflow-wrap: break-word; margin-bottom: 10px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; font-size: 14px; font-family: Poppins, HelveticaNeue, "Helvetica Neue", Helvetica, Arial, sans-serif; list-style-type: disc; color: rgb(102, 102, 102);"><li style="box-sizing: border-box; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">To oversee and manage social media accounts (twitter, facebook, linkedin, instagram,  Google and other social media channels in accordance with the hotel standards.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">The candidate will be primarily responsible for developing& executing strategies to promote the hotel across Social Media Networks with various Social Media Marketing tools provided in a global environment.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">To run high priority social creative campaigns, media engagement and third parties as required and ensuring that all work is aligned with brand marketing plans and campaigns.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">​To be responsible for reflecting the style and tone of voice across social media marketing and ensure that content and conversations match audience needs.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">Content creation, assimilation & distribution on Social Media Networks in appropriate situations.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">To advise and participate in the development and delivery of a social media strategy for hotel products & services.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">Conceptualize and execute social media campaigns, contest etc…</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">To source content and supply the copy and images for the blog, based on content required for email, website and social media campaigns.</li><li style="box-sizing: border-box; margin-top: 7px; margin-bottom: 7px; padding: 5px; list-style-position: outside; list-style-image: none;">To create assets (images, gifs, video) that can be used across the social media channels in line with marketing priorities.</li></ul></li></ul>', 50, 80, 15000, 20000, '10-10-2023', 0, '1', '2023-08-03', '2023-08-12'),
+	(8, 1, 'Telecommunication Systems Engineer', '5, ', 'Full-Time', 'Hà Nội', '$,', 'ssssssssssssss', '2222', 12, 20, 1500, 3000, 'Day-Month-2023', 0, '2', '2023-08-10', '2023-08-12'),
+	(11, 1, 'afvadf', '5, ', 'Freelance', 'TP.HCM', 'asdvas,', 'asdva', '<p>asdvasdv</p>', 0, 0, 0, 0, 'Day-Month-2023', 0, '1', '2023-08-13', '2023-08-13'),
+	(12, 1, 'afvbsgb', '5, ', 'Internship', 'TP.HCM', 'fgsfgn,', 'sfgns', '<p>sgnsfgn</p>', 0, 0, 0, 0, 'Day-Month-2023', 0, '0', '2023-08-13', '2023-08-13');
 
 -- Dumping structure for table worksout.job_type
 DROP TABLE IF EXISTS `job_type`;
@@ -326,19 +369,19 @@ CREATE TABLE IF NOT EXISTS `tags` (
   `create_day` date NOT NULL,
   `update_day` date NOT NULL,
   PRIMARY KEY (`tag_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table worksout.tags: 19 rows
+-- Dumping data for table worksout.tags: 25 rows
 /*!40000 ALTER TABLE `tags` DISABLE KEYS */;
 INSERT INTO `tags` (`tag_id`, `name`, `popular`, `create_day`, `update_day`) VALUES
 	(29, 'php', 4, '0000-00-00', '0000-00-00'),
 	(46, '$$html', 1, '0000-00-00', '0000-00-00'),
 	(45, '$html', 3, '0000-00-00', '0000-00-00'),
-	(44, '', 12, '0000-00-00', '0000-00-00'),
+	(44, '', 40, '0000-00-00', '0000-00-00'),
 	(43, 'ddd', 1, '0000-00-00', '0000-00-00'),
 	(42, 'ccc', 1, '0000-00-00', '0000-00-00'),
 	(41, 'bbb', 1, '0000-00-00', '0000-00-00'),
-	(40, 'aaa', 1, '0000-00-00', '0000-00-00'),
+	(40, 'aaa', 2, '0000-00-00', '0000-00-00'),
 	(39, 'efw', 1, '0000-00-00', '0000-00-00'),
 	(38, 'hnhg', 1, '0000-00-00', '0000-00-00'),
 	(37, 'asa', 1, '0000-00-00', '0000-00-00'),
@@ -351,7 +394,20 @@ INSERT INTO `tags` (`tag_id`, `name`, `popular`, `create_day`, `update_day`) VAL
 	(30, 'javascript', 2, '0000-00-00', '0000-00-00'),
 	(28, 'css', 10, '0000-00-00', '0000-00-00'),
 	(27, 'html', 6, '0000-00-00', '0000-00-00'),
-	(47, 'sell', 1, '0000-00-00', '0000-00-00');
+	(47, 'sell', 5, '0000-00-00', '0000-00-00'),
+	(48, '$sell', 4, '0000-00-00', '0000-00-00'),
+	(49, '$$sell', 1, '0000-00-00', '0000-00-00'),
+	(50, '$$$sell', 1, '0000-00-00', '0000-00-00'),
+	(51, '$$$$sell', 1, '0000-00-00', '0000-00-00'),
+	(52, 'afbdfb', 1, '0000-00-00', '0000-00-00'),
+	(53, 'afvdf', 2, '0000-00-00', '0000-00-00'),
+	(54, 'fbd', 1, '0000-00-00', '0000-00-00'),
+	(55, 'sdsv', 1, '0000-00-00', '0000-00-00'),
+	(56, 'a        a', 1, '0000-00-00', '0000-00-00'),
+	(57, 'aa aa aa', 1, '0000-00-00', '0000-00-00'),
+	(58, 'b b b', 1, '0000-00-00', '0000-00-00'),
+	(59, 'asdvas', 1, '0000-00-00', '0000-00-00'),
+	(60, 'fgsfgn', 1, '0000-00-00', '0000-00-00');
 /*!40000 ALTER TABLE `tags` ENABLE KEYS */;
 
 -- Dumping structure for table worksout.user
@@ -366,14 +422,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `create_day` date NOT NULL,
   `update_day` date NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table worksout.user: 3 rows
+-- Dumping data for table worksout.user: 4 rows
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id_user`, `user_name`, `email`, `password`, `role`, `active`, `create_day`, `update_day`) VALUES
 	(1, 'nguyenvana', 'nongtiendung2309@gmail.com', '202cb962ac59075b964b07152d234b70', 1, 1, '2023-08-03', '2023-08-03'),
 	(2, 'nguyenvanb', 'nongtiendung2810@gmail.com', '202cb962ac59075b964b07152d234b70', 2, 1, '2023-08-06', '2023-08-06'),
-	(3, '111111', '111111', '202cb962ac59075b964b07152d234b70', 3, 1, '0000-00-00', '0000-00-00');
+	(0, '111111', '111111', '202cb962ac59075b964b07152d234b70', 3, 1, '0000-00-00', '0000-00-00'),
+	(11, 'nguyenvanc', 'nongtiendung1501@gmail.com', '202cb962ac59075b964b07152d234b70', 1, 0, '2023-08-13', '2023-08-13');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;

@@ -2,16 +2,12 @@
 
 <?php
 
-function custom_echo($x, $length = 60)
+function custom_echo($x, $string_2)
 {
-        if (strlen($x) <= $length) {
-                echo $x;
-        } else {
-                $y = mb_substr($x, 0, $length);
-                $z = strrpos($y, " ");
-                $t = substr($y, 0, $z) . '...';
-                echo $t;
-        }
+    $y = substr($x, 0);
+    $z = strrpos($y, $string_2);
+    $t = substr($y, 0, $z);
+    echo $t;
 }
 
 function callsql($sql)
@@ -24,38 +20,61 @@ function callsql($sql)
                         $data[] = $row__;
                 }
         }
-        return $data;
+    return $data;
 }
 
 function custom_price_echo($numbers)
 {
-        $fmt = numfmt_create( 'de_DE', NumberFormatter::CURRENCY );
-        echo numfmt_format_currency($fmt, $numbers, "VND")."\n";
+    $fmt = numfmt_create('de_DE', NumberFormatter::CURRENCY);
+    echo numfmt_format_currency($fmt, $numbers, "VND") . "\n";
+}
+
+function time_ago($post_date)
+{
+    $date = new DateTime($post_date);
+    $now = new DateTime();
+    echo $date->diff($now)->format("%d days, %h hours ago");
 }
 
 
-function checkLogged(){
-        if (isset($_SESSION['login_success']) && $_SESSION['login_success'] != 0){
-            return 1;
-        }else{
-            return 0;
-        }
+function checkLogged()
+{
+    if (isset($_SESSION['login_success']) && $_SESSION['login_success'] != 0) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 
 function isCandidate()
 {
-    return ($_SESSION['login']['role'] == 1);
+    if (isset($_SESSION['login']['role']) && $_SESSION['login']['role']== 1) {
+        $sql_select_id = "select id_candidate  from candidate where id_user = " . $_SESSION['login']['id_user'];
+//        echo $sql_select_id;die;
+        $id_candidate = callsql($sql_select_id);
+        $id_candidate = $id_candidate[0];
+        $_SESSION['login']['id_candidate'] = $id_candidate['id_candidate'];
+        return 1;
+    }
 }
 
 function isEmployer()
 {
-    return ($_SESSION['login']['role'] == 2);
+    if (isset($_SESSION['login']['role']) && $_SESSION['login']['role']== 2) {
+//        $sql_select_id = "select id_candidate  from candidate where id_user = " . $_SESSION['login']['id_user'];
+//        $id_candidate = callsql($sql_select_id);
+//        $id_candidate = $id_candidate[0];
+//        $_SESSION['login']['id_candidate'] = $id_candidate['id_candidate'];
+        return 1;
+    }
 }
 
 function isAdmin()
 {
-    return ($_SESSION['login']['role'] == 3);
+    if (isset($_SESSION['login']['role']) && $_SESSION['login']['role']== 3) {
+        return 1;
+    }
 }
 
 

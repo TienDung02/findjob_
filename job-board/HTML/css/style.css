@@ -975,8 +975,8 @@ table.manage-table td.action a:hover { color: #505050; }
 	color: #0c0c0c;
 }
 .form-row .type_reg:hover{
-	background-color: #1a704880;
-	color: #000;
+	background-color: #2db2ea1c;
+	color: #2db2ea;
 }
 
 .form-row .type_reg:first-child{
@@ -985,6 +985,7 @@ table.manage-table td.action a:hover { color: #505050; }
 
 .form-row .active{
 	background-color: #2db2ea;
+	color: #fff;
 }
 
 /* ---------------------------------- */
@@ -2762,16 +2763,16 @@ img.mfp-img {
 /* Highlighted Job*/
 .resumes-list li.highlighted a:before,
 .job-list li.highlighted a:before {
-	-webkit-box-shadow: 0px 1px 0px 0px #e0da94 !important;
-	-moz-box-shadow: 0px 1px 0px 0px #e0da94 !important;
-	box-shadow: 0px 1px 0px 0px #e0da94 !important;
+	-webkit-box-shadow: 0px 1px 0px 0px #2db2ea !important;
+	-moz-box-shadow: 0px 1px 0px 0px #2db2ea !important;
+	box-shadow: 0px 1px 0px 0px #2db2ea !important;
 	opacity: 1;
 }
 
 .resumes-list li.highlighted,
 .job-list li.highlighted {
-	background-color: #fefff6 !important;
-	border-color: #e0da94 !important;
+	background-color: #2db2ea0d !important;
+	border-color: #2db2ea !important;
 	z-index: 100;
 }
 
